@@ -1,0 +1,69 @@
+
+<h2>Trouver un centre de vaccination</h2>
+
+<div>
+    <form action= "" method="get" class = "form">
+        <input type="text" id = "city" /><br><br>
+        <!--<input type="submit" id = "city"/><br><br>-->
+    </form>
+    
+    
+</div>
+
+<ul>
+    <div class = "details">
+
+        <li *ngFor="let aCenter of centers"
+        [ngClass]="selected==aCenter ? 'selected' : ''">
+       
+        <button mat-raised-button color="pink">Primary</button>   
+     <!--    
+    <button routerLink="/centers/detail/{{aCenter.id}}">
+        {{aCenter.name}}
+    </button>
+    <button routerLink="/centers?city={{aCenter.city}}">
+        {{aCenter.name}}
+    </button>
+-->
+    <button 
+    [ngStyle]="{'font-weight' : isSpecialCenter(aCenter) ? 'bold' : 'normal'}"
+    (click)="selectCenter(aCenter)">
+    {{aCenter.name}}
+    </button>
+
+        </li>  
+    
+    </div>
+   
+    
+</ul>
+<button class = "choix">Choisir</button>
+<app-vaccination-center (deleted)="onDeleted($event)"></app-vaccination-center>
+
+<!--<app-vaccination-center [center] = "selected"></app-vaccination-center> -->
+
+<div *ngIf="selected" class = "detail">
+    <h2>{{selected.name | uppercase}}</h2>
+    <div>{{selected.adress | lowercase}}
+        <span>{{selected.postalCode}} {{selected.city | uppercase}}</span>
+    </div>
+</div>
+
+<div *ngIf="selected" class = "Info_perso">
+<br><br>
+    <label for="fname">First name:</label>
+    <input type="text" id="fname" name="fname"><br><br>
+    <label for="laname">Last name:</label>
+    <input type="text" id="laname" name="laname"><br><br>
+    <label for="mail">Mail:</label>
+    <input type="text" id="mail" name="mail"><br><br>
+    <label for="date">Date de prise de RDV:</label>
+    <input type="date" id="date" name="date"><br><br>
+
+    <button class = "Réserver">Réserver</button>
+</div>
+
+<div *ngIf="selected" class = "RDV_OK">
+    <br><br>
+    <p>Votre Réservation a bien été prise en compte</p>
+    </div>
