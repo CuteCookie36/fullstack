@@ -1,0 +1,38 @@
+
+.connex{
+	text-align: center;
+	border-width: 4px;
+    border-color: black;
+    border-style: solid;
+    border-radius: 10px;
+    height: 200px;
+    width: 500px;
+	margin-left: auto;
+    margin-right: auto;
+	margin-top: 100px;
+}
+
+.sumit_co{
+    border-width: 2px;
+    border-color: black;
+    border-style: solid;
+    background-color: rgba(225, 189, 224, 0.541);
+    border-radius: 6px;
+    height: 20px;
+    width: 70px;
+	margin-left: auto;
+    margin-right: auto;
+}
+
+.an_input{
+    border-width: 2px;
+    border-color: black;
+    border-style: solid;
+    border-radius: 6px;
+    cursor:pointer;
+}
+
+.an_input:hover {
+    border: 1px solid rgb(224, 153, 153);
+    background-color:  rgb(224, 153, 153);
+  }

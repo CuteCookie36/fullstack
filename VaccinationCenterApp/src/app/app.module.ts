@@ -8,6 +8,10 @@ import { FormsModule } from '@angular/forms';
 import { VaccinationCenterListComponent } from './vaccination-center-list/vaccination-center-list.component';
 import { HttpClientModule } from '@angular/common/http';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { LoginComponent } from './login/login.component';
+import { UtilisateurComponent } from './utilisateur/utilisateur.component';
+import { ReservationComponent } from './reservation/reservation.component';
+import { InfosPersoComponent } from './infos-perso/infos-perso.component';
 
 
 
@@ -16,7 +20,11 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
   declarations: [
     AppComponent,
     VaccinationCenterComponent,
-    VaccinationCenterListComponent
+    VaccinationCenterListComponent,
+    LoginComponent,
+    UtilisateurComponent,
+    ReservationComponent,
+    InfosPersoComponent
   ],
   imports: [
     BrowserModule,

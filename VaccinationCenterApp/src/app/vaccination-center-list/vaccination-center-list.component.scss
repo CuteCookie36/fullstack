@@ -1,3 +1,14 @@
+.find_center{
+    border-width: 4px;
+    border-color: black;
+    border-style: solid;
+    border-radius: 10px;
+    margin-left: 100px;
+    margin-right: 100px;
+	margin-top: 100px;
+}
+
+
 .selected button{
     background-color: aquamarine;
 }
@@ -11,20 +22,15 @@
     width: 400px;
 }
 
-.Info_perso{
-    background-color: burlywood;
-    border-width: 2px;
-    border-color: black;
-    border-style: solid;
-    height: 250px;
-    width: 400px;
-}
 
-.RDV_OK{
-    background-color: pink;
+.sumit_co{
     border-width: 2px;
     border-color: black;
     border-style: solid;
-    height: 100px;
-    width: 400px;
+    background-color: rgba(225, 189, 224, 0.541);
+    border-radius: 6px;
+    height: 20px;
+    width: 70px;
+	margin-left: auto;
+    margin-right: auto;
 }

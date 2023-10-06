@@ -1,0 +1,36 @@
+.Info_perso{
+    background-color: burlywood;
+    border-width: 2px;
+    border-color: black;
+    border-style: solid;
+    height: 250px;
+    width: 400px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+h2{
+    color: black;
+	font-variant: small-caps;
+	letter-spacing: 2px;
+	-webkit-column-span: all;
+	-moz-column-span: all;
+	column-span: all;
+	margin-top: 30px;
+	margin-right: 5%;
+	text-align: center;
+	font-size: 30px;
+	font-family: Didot;
+}
+
+.sumit_co{
+    border-width: 2px;
+    border-color: black;
+    border-style: solid;
+    background-color: rgba(225, 189, 224, 0.541);
+    border-radius: 6px;
+    height: 20px;
+    width: 70px;
+	margin-left: auto;
+    margin-right: auto;
+}
