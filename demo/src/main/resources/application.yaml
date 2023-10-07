@@ -8,7 +8,7 @@ spring:
   jpa:
     database-platform: org.hibernate.dialect.PostgreSQLDialect
     show-sql: true
-    #hibernate.ddl-auto: create
+    hibernate.ddl-auto: update
 
     #le mettre en commentaires si il y a des données dans la bdd
 
