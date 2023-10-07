@@ -1,0 +1,18 @@
+#Public
+http://localhost:4200/users
+
+
+###
+
+# Prive
+POST http://localhost:12035/bieres
+Authorization: Basic dXNlcjpwYXNzd29yZA==
+Content-Type: application/json
+
+{"nom":"Paix Dieu","degres":10}
+
+###
+# Prive
+GET http://localhost:12035/login
+Authorization: Basic dXNlcjpwYXNzd29yZA==
+Content-Type: application/json
