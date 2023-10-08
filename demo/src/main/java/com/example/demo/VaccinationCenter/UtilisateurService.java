@@ -35,8 +35,8 @@ public class UtilisateurService implements UserDetailsService {
         log.info("Creation du user test");
         // en base 64 : dXNlcjpwYXNzd29yZA==
         Utilisateur utilisateur = new Utilisateur();
-        utilisateur.setLogin("user");
-        utilisateur.setPassword(passwordEncoder.encode("password"));
+        utilisateur.setLogin("toto");
+        utilisateur.setPassword(passwordEncoder.encode("coucou"));
         this.utilisateurRepository.save(utilisateur);
     }
 

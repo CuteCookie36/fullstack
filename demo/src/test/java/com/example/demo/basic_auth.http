@@ -5,14 +5,14 @@ http://localhost:4200/users
 ###
 
 # Prive
-POST http://localhost:12035/bieres
+POST http://localhost:4200/users
 Authorization: Basic dXNlcjpwYXNzd29yZA==
 Content-Type: application/json
 
-{"nom":"Paix Dieu","degres":10}
+{"username":"titi","passwd":"lol"}
 
 ###
 # Prive
-GET http://localhost:12035/login
+GET http://localhost:4200/login
 Authorization: Basic dXNlcjpwYXNzd29yZA==
 Content-Type: application/json

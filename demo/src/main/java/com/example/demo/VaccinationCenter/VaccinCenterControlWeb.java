@@ -34,6 +34,5 @@ public class VaccinCenterControlWeb {
             return centerService.SaveVaccinCenter(Center);
         } 
 
-//faire des postmapping pour rajouter dans la bdd avec save...
-//diapo 63 de dev d'app
+
     }
