@@ -12,10 +12,10 @@ import {MatButtonModule} from '@angular/material/button';
   styleUrls: ['./vaccination-center-list.component.scss']
 })
 export class VaccinationCenterListComponent implements OnInit {
-
+  city: string = '';
   centers!: VaccinationCenter[];
   selected?: VaccinationCenter;
- 
+
 /*
   centers: VaccinationCenter[] = [
     {id:1, name: "Hopital de toto", adress: "Rue du pont", postalCode: "54000", city: "Nancy"},
@@ -23,18 +23,21 @@ export class VaccinationCenterListComponent implements OnInit {
     {id:3, name: "Hopital de titi", adress: "Rue du pint", postalCode: "54000", city: "Nancy"},
     {id:4, name: "Hopital de tete", adress: "Rue du punt", postalCode: "54000", city: "Nancy"},
     {id:5, name: "Hopital de tutu", adress: "Rue du pent", postalCode: "54000", city: "Nancy"}
-  
+
   ];
 
  */
 
-  
-  constructor(private service: VaccinationService){}
-  ngOnInit(): void {  
-    this.service.getAllVaccinationCenter().subscribe(resultCenters=>{this.centers = resultCenters;});
-    this.service.getCenterByCity(this.selected!.city).subscribe(resultCenters=>{this.centers = resultCenters;});
-  }
 
+  constructor(private service: VaccinationService){}
+  ngOnInit(): void {
+   // this.service.getAllVaccinationCenter().subscribe(resultCenters=>{this.centers = resultCenters;});
+  }
+  searchByCity() {
+    this.service.getCenterByCity(this.city).subscribe(data => {
+      this.centers = data;
+    });
+  }
   isSpecialCenter(center: VaccinationCenter){
     return center.city == "Nancy";
   }
