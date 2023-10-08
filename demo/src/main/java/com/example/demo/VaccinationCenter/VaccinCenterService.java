@@ -6,7 +6,7 @@ import org.springframework.stereotype.Service;
 
 @Service
 public class VaccinCenterService {
-
+    
     @Autowired
     private VaccinCenterRepo centerRepository;
 
@@ -17,7 +17,7 @@ public class VaccinCenterService {
      public List<VaccinationCenter> findAll(){
         return centerRepository.findAll();
     }
-
+    
     public VaccinationCenter SaveVaccinCenter(VaccinationCenter Center){
         return centerRepository.save(Center);
     }
