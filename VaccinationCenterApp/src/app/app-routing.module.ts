@@ -14,7 +14,7 @@ const routes: Routes = [
   {path: "connexion",           component: LoginComponent},
   {path: "reservation",         component: ReservationComponent},
   {path: "infos_perso",         component: InfosPersoComponent},
-  {path: '', redirectTo: '/connexion', pathMatch: 'full'},
+  {path: '', redirectTo: '/centers', pathMatch: 'full'},
 ];
 
 @NgModule({
