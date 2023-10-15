@@ -7,23 +7,22 @@
 
 <div class = "find_center">
     
-    <h2>&nbsp;Trouver un centre de vaccination</h2>
+    <h2>&nbsp;<strong>Trouver un centre de vaccination </strong></h2><p>&nbsp;&nbsp;(veuillez respecter la casse (majuscule, toute lettre))</p>
     &nbsp;&nbsp;<input type="text" [(ngModel)]="city" placeholder="Rechercher par ville">
     <button (click)="searchByCity()">Rechercher</button>
     <ul>
-        <li *ngFor="let centre of centers">
-          <strong>ID:</strong> {{ centre.id }}<br>
+        <li *ngFor="let centre of centers" [ngClass]="selected==centre ? 'selected' : ''">
           <strong>Nom:</strong> {{ centre.name }}<br>
           <strong>Adresse:</strong> {{ centre.adress }}<br>
-          <strong>Code Postal:</strong> {{ centre.postalCode }}<br>
           <strong>Ville:</strong> {{ centre.city }}<br>
+          <button (click)="selectCenter(centre)">Sélectionner</button>
           <hr> <!-- Une ligne horizontale pour séparer chaque centre -->
         </li>
     </ul>
 
 
-        <ul>
-<!--
+        <!-- <ul>
+
             <div class = "details">
 
                 <li *ngFor="let aCenter of centers"
@@ -47,9 +46,9 @@
                 </li>
 
             </div>
--->
 
-        </ul>
+
+        </ul> -->
         <!-- <app-vaccination-center (deleted)="onDeleted($event)"></app-vaccination-center> -->
         <br>
 </div>
@@ -57,14 +56,38 @@
 
 
 <!--<app-vaccination-center [center] = "selected"></app-vaccination-center> -->
-
+<br><br>
 <div *ngIf="selected" class = "detail">
-    <h2>{{selected.name | uppercase}}</h2>
-    <div>{{selected.adress | lowercase}}
-        <span>{{selected.postalCode}} {{selected.city | uppercase}}</span>
+    <h4><strong>&nbsp;{{selected.name | uppercase}}</strong></h4>
+    <div class = "adress">
+        &nbsp;{{selected.adress | lowercase}}
+        {{selected.city | uppercase}}
     </div>
 </div>
 
-<div class = "sumit_co">
-    <a href="http://localhost:4200/infos_perso">Réserver</a>
+<div *ngIf="selected" class = centre_selec>
+    <br>
+    <div class = "titre">
+        <h3>Veuillez rentrer vos informations personnelles</h3>
+    </div>
+    <div class = "Info_perso">
+        <br><br>
+        &nbsp;<label for="fname">First name:</label>
+        &nbsp;<input type="text" id="fname" name="fname"><br><br>
+        &nbsp;<label for="laname">Last name:</label>
+        &nbsp;<input type="text" id="laname" name="laname"><br><br>
+        &nbsp;<label for="mail">Mail:</label>
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<input type="text" id="mail" name="mail"><br><br>
+        &nbsp;<label for="date">Date de prise de RDV:</label>
+        &nbsp;<input type="date" id="date" name="date"><br><br>
+
+        <div class = "sumit_co">
+            <a href="http://localhost:4200/reservation">Réserver</a>
+        </div>
+    </div>
 </div>
+
+
+<!-- <div class = "sumit_co">
+    <a href="http://localhost:4200/infos_perso">Réserver</a>
+</div> -->

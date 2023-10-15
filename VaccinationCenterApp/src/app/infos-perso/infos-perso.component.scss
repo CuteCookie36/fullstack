@@ -16,10 +16,10 @@ h2{
 	-webkit-column-span: all;
 	-moz-column-span: all;
 	column-span: all;
-	margin-top: 30px;
+	margin-top: 10px;
 	margin-right: 5%;
 	text-align: center;
-	font-size: 30px;
+	font-size: 25px;
 	font-family: Didot;
 }
 
@@ -38,8 +38,16 @@ h2{
 }
 
 .titre{
-    width: 1000px;
+    width: 500px;
 	margin-left: auto;
 	margin-right: auto; 
-    justify-content: center; 
+    justify-content: center;
+}
+
+.centre_selec{
+    border: solid black 5px;
+    height: 400px;
+    width: 600px;
+    margin-left: auto;
+    margin-right: auto;
 }
