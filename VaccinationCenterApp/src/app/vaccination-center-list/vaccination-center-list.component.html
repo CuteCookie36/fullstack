@@ -6,9 +6,9 @@
 
 
 <div class = "find_center">
-    <div class = "titre">
+    
     <h2>&nbsp;Trouver un centre de vaccination</h2>
-    <input type="text" [(ngModel)]="city" placeholder="Rechercher par ville">
+    &nbsp;&nbsp;<input type="text" [(ngModel)]="city" placeholder="Rechercher par ville">
     <button (click)="searchByCity()">Rechercher</button>
     <ul>
         <li *ngFor="let centre of centers">
@@ -19,7 +19,7 @@
           <strong>Ville:</strong> {{ centre.city }}<br>
           <hr> <!-- Une ligne horizontale pour séparer chaque centre -->
         </li>
-      </ul>
+    </ul>
 
 
         <ul>
@@ -30,15 +30,14 @@
                 [ngClass]="selected==aCenter ? 'selected' : ''">
 
 
-                <!--
+             
                 <button routerLink="/centers/detail/{{aCenter.id}}">
                     {{aCenter.name}}
                 </button>
                 <button routerLink="/centers?city={{aCenter.city}}">
                     {{aCenter.name}}
                 </button>
-                -->
-                <!--
+                
                 <button
                 [ngStyle]="{'font-weight' : isSpecialCenter(aCenter) ? 'bold' : 'normal'}"
                 (click)="selectCenter(aCenter)">
@@ -48,7 +47,7 @@
                 </li>
 
             </div>
-        -->
+-->
 
         </ul>
         <!-- <app-vaccination-center (deleted)="onDeleted($event)"></app-vaccination-center> -->

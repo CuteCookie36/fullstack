@@ -1,4 +1,4 @@
-package com.example.demo.VaccinationCenter;
+package com.example.demo.VaccinationCenter.entity;
 
 public class User {
     
