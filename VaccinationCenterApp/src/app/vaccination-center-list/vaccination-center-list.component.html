@@ -73,14 +73,17 @@
     <div class = "Info_perso">
         <br><br>
         &nbsp;<label for="fname">First name:</label>
-        &nbsp;<input type="text" id="fname" name="fname"><br><br>
+        &nbsp;<input type="text" [(ngModel)]="firstName" placeholder="prenom"><br><br>
         &nbsp;<label for="laname">Last name:</label>
-        &nbsp;<input type="text" id="laname" name="laname"><br><br>
+        &nbsp;<input type="text" [(ngModel)]="lastName" placeholder="nom"><br><br>
         &nbsp;<label for="mail">Mail:</label>
-        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<input type="text" id="mail" name="mail"><br><br>
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+        <input type="text" [(ngModel)]="mail" placeholder="mail"><br><br>
         &nbsp;<label for="date">Date de prise de RDV:</label>
-        &nbsp;<input type="date" id="date" name="date"><br><br>
-
+        &nbsp;<input type="date" [ngModel]= "startDate | date:'yyyy-MM-dd'" (ngModelChange)="startDate = $event"><br><br>
+        
+        <!-- <button (click)="saveReservation()">Réserver</button> -->
+        
         <div class = "sumit_co">
             <a href="http://localhost:4200/reservation">Réserver</a>
         </div>

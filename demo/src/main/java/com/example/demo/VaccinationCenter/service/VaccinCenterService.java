@@ -1,5 +1,6 @@
 package com.example.demo.VaccinationCenter.service;
 import java.util.List;
+import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -15,6 +16,9 @@ public class VaccinCenterService {
 
     public List<VaccinationCenter> findAllByCity(String city){
         return centerRepository.findAllByCityLike(city);
+    }
+    public VaccinationCenter findById(int id){
+        return centerRepository.findById(id).get();
     }
 
      public List<VaccinationCenter> findAll(){

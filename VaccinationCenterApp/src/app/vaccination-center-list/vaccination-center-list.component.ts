@@ -5,6 +5,8 @@ import { FormBuilder } from '@angular/forms';
 import {MatIconModule} from '@angular/material/icon';
 import {MatDividerModule} from '@angular/material/divider';
 import {MatButtonModule} from '@angular/material/button';
+import { DatePipe } from '@angular/common';
+import { ReservationService } from '../reservation.service';
 
 @Component({
   selector: 'app-vaccination-center-list',
@@ -13,6 +15,10 @@ import {MatButtonModule} from '@angular/material/button';
 })
 export class VaccinationCenterListComponent implements OnInit {
   city: string = '';
+  firstName: string = '';
+  lastName: string = '';
+  mail: string = '';
+  startDate!: Date;
   centers!: VaccinationCenter[];
   selected?: VaccinationCenter;
 
@@ -29,7 +35,7 @@ export class VaccinationCenterListComponent implements OnInit {
  */
 
 
-  constructor(private service: VaccinationService){}
+  constructor(private service: VaccinationService, private service2: ReservationService){}
   ngOnInit(): void {
    // this.service.getAllVaccinationCenter().subscribe(resultCenters=>{this.centers = resultCenters;});
   }
@@ -38,6 +44,11 @@ export class VaccinationCenterListComponent implements OnInit {
       this.centers = data;
     });
   }
+
+  saveReservation(){
+    //en attente de la fonction dans reservation.service.ts
+  }
+
   isSpecialCenter(center: VaccinationCenter){
     return center.city == "Nancy";
   }

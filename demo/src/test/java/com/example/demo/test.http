@@ -1,4 +1,4 @@
-GET http://localhost:8080/api/public/centers?city=M%
+GET http://localhost:8080/api/public/centers?city=N%
 
 //GET http://localhost:4200/api/public/centers?city=M%
 //Accept: text/html

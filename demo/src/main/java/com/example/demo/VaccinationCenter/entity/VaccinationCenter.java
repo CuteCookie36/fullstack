@@ -1,10 +1,15 @@
 package com.example.demo.VaccinationCenter.entity;
 
+import java.util.List;
+
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.OneToMany;
 import jakarta.persistence.Table;
 
 @Entity
@@ -13,12 +18,12 @@ public class VaccinationCenter {
     
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Integer id;
+    private int id;
     
-    public Integer getId() {
+    public int getId() {
         return id;
     }
-    public void setId(Integer id) {
+    public void setId(int id) {
         this.id = id;
     }
     /////////////////////////////
@@ -50,6 +55,18 @@ public class VaccinationCenter {
     public void setAdress(String adress) {
         this.adress = adress;
     }
+    ///////////////////////////
+    
+    @OneToMany(mappedBy = "vaccinationCenter", cascade = {})
+    private List<Reservation> reservations;
+
+    public List<Reservation> getReservation() {
+        return reservations;
+    }
+    public void setReservation(List<Reservation> reservations) {
+        this.reservations = reservations;
+    }
+
 
 
 }

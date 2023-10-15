@@ -2,8 +2,8 @@ POST http://localhost:8080/api/public/centers/save
 Content-Type: application/json
 
 {
-    "name" : "Centre des Mirabelles",
+    "name" : "Centre des Pommes",
     "city": "Metz",
-    "adress": "5 rue du puit"
+    "adress": "5 rue de la barbade"
 
 }

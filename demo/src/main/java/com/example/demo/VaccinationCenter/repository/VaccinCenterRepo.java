@@ -10,10 +10,7 @@ import com.example.demo.VaccinationCenter.entity.VaccinationCenter;
 @Repository
 public interface VaccinCenterRepo extends JpaRepository<VaccinationCenter, Integer> { //on choisit integer car la clé primaire est en integer
 
-    //Recherche des centres d’une ville choisie (R)
-    //Inscription à un centre (mail, téléphone, nom, prénom, date) (C)
-
-    public List<VaccinationCenter> findAllByCityLike(String city); //on créé findallbycitylike qui va correspondre à requete sql
+   public List<VaccinationCenter> findAllByCityLike(String city); //on créé findallbycitylike qui va correspondre à requete sql
 
 }
 
