@@ -1,3 +1,4 @@
+import { VaccinationCenter } from "./vaccination-center";
 
 export interface Reservation {
     id: number;

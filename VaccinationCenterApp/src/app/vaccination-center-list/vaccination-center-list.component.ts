@@ -7,6 +7,7 @@ import {MatDividerModule} from '@angular/material/divider';
 import {MatButtonModule} from '@angular/material/button';
 import { DatePipe } from '@angular/common';
 import { ReservationService } from '../reservation.service';
+import { Reservation } from '../reservation';
 
 @Component({
   selector: 'app-vaccination-center-list',
@@ -15,12 +16,14 @@ import { ReservationService } from '../reservation.service';
 })
 export class VaccinationCenterListComponent implements OnInit {
   city: string = '';
+
   firstName: string = '';
   lastName: string = '';
   mail: string = '';
   startDate!: Date;
   centers!: VaccinationCenter[];
   selected?: VaccinationCenter;
+  reservation!: Reservation;
 
 /*
   centers: VaccinationCenter[] = [
@@ -46,7 +49,9 @@ export class VaccinationCenterListComponent implements OnInit {
   }
 
   saveReservation(){
-    //en attente de la fonction dans reservation.service.ts
+      this.service2.addReservation(this.reservation).subscribe(data=>{
+        console.log(data)
+      });
   }
 
   isSpecialCenter(center: VaccinationCenter){
