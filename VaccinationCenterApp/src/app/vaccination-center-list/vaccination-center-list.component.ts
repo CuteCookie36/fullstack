@@ -8,6 +8,8 @@ import {MatButtonModule} from '@angular/material/button';
 import { DatePipe } from '@angular/common';
 import { ReservationService } from '../reservation.service';
 import { Reservation } from '../reservation';
+import { Router } from '@angular/router';
+import { RouterTestingHarness } from '@angular/router/testing';
 
 @Component({
   selector: 'app-vaccination-center-list',
@@ -39,7 +41,7 @@ export class VaccinationCenterListComponent implements OnInit {
  */
 
 
-  constructor(private service: VaccinationService, private service2: ReservationService){}
+  constructor(private service: VaccinationService, private service2: ReservationService, private router: Router){}
   ngOnInit(): void {
    // this.service.getAllVaccinationCenter().subscribe(resultCenters=>{this.centers = resultCenters;});
   }
@@ -50,6 +52,7 @@ export class VaccinationCenterListComponent implements OnInit {
   }
 
   saveReservation(center: VaccinationCenter){
+    
     if(this.selectedCenterId !== null && this.isReservationValid(this.reservation)){
       console.log("id du centre select : ", center.id);
       console.log("prenom du patient : ", this.reservation.firstName);
@@ -63,6 +66,7 @@ export class VaccinationCenterListComponent implements OnInit {
         this.service2.addReservation(this.reservation).subscribe(data=>{
           console.log(data)
         });
+      this.router.navigate(['reservation']);
       } else {
         console.error("L'ID du centre de vaccination est manquant ou invalide.");
       }
@@ -89,9 +93,6 @@ export class VaccinationCenterListComponent implements OnInit {
     }
   }
 
-
-
-
   isSpecialCenter(center: VaccinationCenter){
     return center.city == "Nancy";
   }
@@ -105,6 +106,7 @@ export class VaccinationCenterListComponent implements OnInit {
     console.log("ID du centre dans la réservation : ", this.reservation.vaccinationCenter.id);
     
   }
+
 
   onDeleted(center: VaccinationCenter){
     delete this.selected;
