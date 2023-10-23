@@ -1,14 +1,16 @@
 <br><br>
         <p>&nbsp;Votre réservation a bien été prise en compte</p>
-
+        <div class = "sumit_retour">
+          <a href="http://localhost:4200/centers">Retour à la page des centres</a>
+        </div>
         <button (click)="getAllReservation()">Voir toute les réservations</button>
         <ul>
             <li *ngFor="let reservation of reservations" [ngClass]="selected==reservation ? 'selected' : ''">
-                <strong>Numéro de reservation:</strong> {{ reservation.id }}<br>
+                <!-- <strong>Numéro de reservation:</strong> {{ reservation.id }}<br> -->
                 <strong>prénom:</strong> {{ reservation.firstName }}<br>
                 <strong>Nom:</strong> {{ reservation.lastName }}<br>
               <strong>Adresse mail:</strong> {{ reservation.mail }}<br>
-              <strong>Date:</strong> {{ reservation.date }}<br>
+              <strong>Date:</strong> {{ reservation.dateRDV }}<br>
               <hr> <!-- Une ligne horizontale pour séparer chaque centre -->
             </li>
         </ul>

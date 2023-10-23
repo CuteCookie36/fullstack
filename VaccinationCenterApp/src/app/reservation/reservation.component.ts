@@ -12,6 +12,7 @@ export class ReservationComponent {
   firstName: string = '';
   lastName: string = '';
   mail: string = '';
+  maDate = new Date();
   reservations!: Reservation[];
   selected?: Reservation;
 

@@ -16,14 +16,15 @@ import { Reservation } from '../reservation';
 })
 export class VaccinationCenterListComponent implements OnInit {
   city: string = '';
-
   firstName: string = '';
   lastName: string = '';
   mail: string = '';
-  startDate!: Date;
+  dateRDV: string = '';
   centers!: VaccinationCenter[];
   selected?: VaccinationCenter;
-  reservation!: Reservation;
+  selectedCenterId: number | null = null;
+  //reservation!: Reservation;
+  reservation: Reservation = new Reservation();
 
 /*
   centers: VaccinationCenter[] = [
@@ -48,11 +49,48 @@ export class VaccinationCenterListComponent implements OnInit {
     });
   }
 
-  saveReservation(){
-      this.service2.addReservation(this.reservation).subscribe(data=>{
-        console.log(data)
-      });
+  saveReservation(center: VaccinationCenter){
+    if(this.selectedCenterId !== null && this.isReservationValid(this.reservation)){
+      console.log("id du centre select : ", center.id);
+      console.log("prenom du patient : ", this.reservation.firstName);
+      console.log("nom du patient : ", this.reservation.lastName);
+      console.log("mail du patient : ", this.reservation.mail);
+      console.log("date de la réservation : ", this.reservation.dateRDV);
+      console.log("centre de vaccina : ", this.reservation.vaccinationCenter);
+      console.log("id centre de vaccina : ", this.reservation.vaccinationCenter.id);
+      if (this.reservation.vaccinationCenter && this.reservation.vaccinationCenter.id > 0){
+        this.reservation.vaccinationCenter.id = this.selectedCenterId;
+        this.service2.addReservation(this.reservation).subscribe(data=>{
+          console.log(data)
+        });
+      } else {
+        console.error("L'ID du centre de vaccination est manquant ou invalide.");
+      }
+      
+    } else {
+      console.error("L'objet de réservation n'est pas correctement initialisé.");
+    }
+      
   }
+
+  isReservationValid(reservation: Reservation): boolean {
+    if (
+      reservation &&
+      reservation.firstName &&
+      reservation.lastName &&
+      reservation.mail &&
+      reservation.dateRDV &&
+      reservation.vaccinationCenter 
+      //reservation.vaccinationCenter.id
+    ) {
+      return true;
+    } else {
+      return false;
+    }
+  }
+
+
+
 
   isSpecialCenter(center: VaccinationCenter){
     return center.city == "Nancy";
@@ -60,6 +98,12 @@ export class VaccinationCenterListComponent implements OnInit {
 
   selectCenter(center: VaccinationCenter){
     this.selected=center;
+    this.selectedCenterId = center.id;
+    console.log("ID du centre sélectionné : ", this.selectedCenterId);
+    console.log("ID du centre : ", center.id);
+    this.reservation.vaccinationCenter.id = this.selectedCenterId;
+    console.log("ID du centre dans la réservation : ", this.reservation.vaccinationCenter.id);
+    
   }
 
   onDeleted(center: VaccinationCenter){
