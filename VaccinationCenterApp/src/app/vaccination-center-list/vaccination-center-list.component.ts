@@ -1,7 +1,7 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
 import { VaccinationCenter } from '../vaccination-center';
 import { VaccinationService } from '../vaccination.service';
-import { FormBuilder } from '@angular/forms';
+import { FormBuilder, NgForm } from '@angular/forms';
 import {MatIconModule} from '@angular/material/icon';
 import {MatDividerModule} from '@angular/material/divider';
 import {MatButtonModule} from '@angular/material/button';
@@ -27,6 +27,7 @@ export class VaccinationCenterListComponent implements OnInit {
   selectedCenterId: number | null = null;
   //reservation!: Reservation;
   reservation: Reservation = new Reservation();
+  borderColor: string = 'rgb(237, 13, 13)';
 
 /*
   centers: VaccinationCenter[] = [
@@ -40,7 +41,6 @@ export class VaccinationCenterListComponent implements OnInit {
 
  */
 
-
   constructor(private service: VaccinationService, private service2: ReservationService, private router: Router){}
   ngOnInit(): void {
    // this.service.getAllVaccinationCenter().subscribe(resultCenters=>{this.centers = resultCenters;});
@@ -49,6 +49,29 @@ export class VaccinationCenterListComponent implements OnInit {
     this.service.getCenterByCity(this.city).subscribe(data => {
       this.centers = data;
     });
+  }
+
+  onFirstNameChange() {
+    if (this.reservation.firstName) {
+      // Si le champ est rempli, changez la couleur de la bordure
+      this.borderColor = 'black'; 
+    }
+    else if (this.reservation.lastName) {
+      // Si le champ est rempli, changez la couleur de la bordure
+      this.borderColor = 'black'; 
+    }
+    else if (this.reservation.mail) {
+      // Si le champ est rempli, changez la couleur de la bordure
+      this.borderColor = 'black'; 
+    }
+    else if (this.reservation.dateRDV) {
+      // Si le champ est rempli, changez la couleur de la bordure
+      this.borderColor = 'black'; 
+    }   
+    else {
+      // Si le champ est vide, rétablissez la couleur de la bordure par défaut (rouge)
+      this.borderColor = 'rgb(237, 13, 13)';
+    }
   }
 
   saveReservation(center: VaccinationCenter){

@@ -8,8 +8,11 @@
 <div class = "find_center">
     
     <h2>&nbsp;<strong>Trouver un centre de vaccination </strong></h2><p>(veuillez respecter la casse (majuscule, toute lettre) et seules Nancy et Metz sont disponibles)</p>
-    &nbsp;&nbsp;<input type="text" [(ngModel)]="city" placeholder="Rechercher par ville" name = "search">
-    <button (click)="searchByCity()">Rechercher</button>
+    <div class = "recherche">
+        &nbsp;&nbsp;<input type="text" [(ngModel)]="city" placeholder="Rechercher par ville" name = "search" class = "search_bar">
+        <button class = "search_cent" (click)="searchByCity()"><strong>Rechercher</strong></button>
+    </div>
+    
     <ul>
         <li *ngFor="let centre of centers" [ngClass]="selected==centre ? 'selected' : ''">
           <strong>Nom:</strong> {{ centre.name }}<br>
@@ -64,7 +67,7 @@
         {{selected.city | uppercase}}
     </div>
 </div>
-
+<br><br>
 <div *ngIf="selected" class = centre_selec>
     <br>
     <div class = "titre">
@@ -72,19 +75,50 @@
     </div>
     <div class = "Info_perso">
         <br><br>
+        <div *ngIf="firstNameRef.invalid && firstNameRef.touched">
+            <div class = "erreur"><strong>Le prénom est obligatoire</strong></div>
+        </div>
         &nbsp;<label for="fname">First name:</label>
-        &nbsp;<input type="text" [(ngModel)]="reservation.firstName" placeholder="prenom"><br><br>
+        &nbsp;<input type="text" [(ngModel)]="reservation.firstName" placeholder="prenom" 
+                required 
+                #firstNameRef="ngModel"
+                (ngModelChange)="onFirstNameChange()" 
+                [ngStyle]="{'border': '2px solid ' + borderColor}"><br><br>
+        
+        <div *ngIf="lastNameRef.invalid && lastNameRef.touched">
+            <div class = "erreur"><strong>Le nom est obligatoire</strong></div>
+        </div>
         &nbsp;<label for="laname">Last name:</label>
-        &nbsp;<input type="text" [(ngModel)]="reservation.lastName" placeholder="nom"><br><br>
+        &nbsp;<input type="text" [(ngModel)]="reservation.lastName" placeholder="nom" 
+                required
+                #lastNameRef="ngModel"
+                (ngModelChange)="onFirstNameChange()" 
+                [ngStyle]="{'border': '2px solid ' + borderColor}"><br><br>
+        
+        <div *ngIf="mailRef.invalid && mailRef.touched">
+            <div class = "erreur"><strong>L'email est obligatoire</strong></div>
+        </div>
         &nbsp;<label for="mail">Mail:</label>
         &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-        <input type="text" [(ngModel)]="reservation.mail" placeholder="mail"><br><br>
+        <input type="email" [(ngModel)]="reservation.mail" placeholder="mail@mail.com" 
+                required
+                #mailRef="ngModel"
+                (ngModelChange)="onFirstNameChange()" 
+                [ngStyle]="{'border': '2px solid ' + borderColor}"><br><br>
+        
+        <div *ngIf="dateRDVRef.invalid && dateRDVRef.touched">
+            <div class = "erreur"><strong>La date est obligatoire</strong></div>
+        </div>
         &nbsp;<label for="date">Date de prise de RDV:</label>
         <!-- &nbsp;<input type="date" [ngModel]= "dateRDV | date:'yyyy-MM-dd'" (ngModelChange)="dateRDV = $event"><br><br> -->
-        &nbsp;<input type="date" [(ngModel)]= "reservation.dateRDV" ><br><br>
+        &nbsp;<input type="date" [(ngModel)]= "reservation.dateRDV" 
+            required
+            #dateRDVRef="ngModel"
+            (ngModelChange)="onFirstNameChange()" 
+            [ngStyle]="{'border': '2px solid ' + borderColor}"><br><br>
+
 
         <button class = "bout_reserv" (click)="saveReservation(selected)"><strong>Réserver</strong></button>
-        
         <!-- <div class = "sumit_co">
             <a href="http://localhost:4200/reservation">Réserver</a>
         </div> -->
