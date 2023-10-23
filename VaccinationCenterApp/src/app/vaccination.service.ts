@@ -3,6 +3,7 @@ import { VaccinationCenter } from './vaccination-center';
 import { createInjectableType } from '@angular/compiler';
 import { Observable } from 'rxjs';
 import { HttpClient } from '@angular/common/http';
+import { Reservation } from './reservation';
 
 @Injectable({
   providedIn: 'root'
@@ -15,21 +16,23 @@ export class VaccinationService {
     {id:3, name: "Hopital de titi", adress: "Rue du pint", postalCode: "54000", city: "Nancy"},
     {id:4, name: "Hopital de tete", adress: "Rue du punt", postalCode: "54000", city: "Nancy"},
     {id:5, name: "Hopital de tutu", adress: "Rue du pent", postalCode: "54000", city: "Nancy"}
-  
+
   ];
   constructor(private http: HttpClient) { }
 
   getAllVaccinationCenter() : Observable<VaccinationCenter[]>{
     return this.http.get<VaccinationCenter[]>("api/public/centers");
   }
-  
+
   getCenterById(id: Number) : Observable<VaccinationCenter>{
     return this.http.get<VaccinationCenter>("api/public/centers/"+id);
   }
 
   getCenterByCity(city: String) : Observable<VaccinationCenter[]>{
-    
+
     return this.http.get<VaccinationCenter[]>("api/public/centers?city="+city);
   }
+
+
 
 }

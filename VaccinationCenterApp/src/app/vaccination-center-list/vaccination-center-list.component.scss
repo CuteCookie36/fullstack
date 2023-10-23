@@ -8,16 +8,58 @@
     background-color: white;     
 }
 
+.search_cent{
+    display: block;
+    border-width: 2px;
+    border-color: black;
+    border-style: solid;
+    background-color:  rgba(225, 189, 224, 0.541);
+    border-radius: 6px;
+    height: 20px;
+    width: 90px;
+    margin-right: 10px;
+    flex: 1;
+    justify-content: center;
+    color:  black;
+    cursor: pointer;
+}
 
+.search_bar{
+    margin-right: 5px;
+    border-radius: 6px;
+    flex: 3;
+}
+
+.recherche{
+    display: flex;
+}
 
 .selected button{
-    background-color:  rgb(252, 142, 252);
+    background-color: rgb(252, 142, 252);
+    cursor: pointer;
+}
+
+.select_center{
+    display: block;
+    border-width: 2px;
+    border-color: black;
+    border-style: solid;
+    background-color:  rgba(225, 189, 224, 0.541);
+    border-radius: 6px;
+    height: 20px;
+    width: 90px;
+    margin-right: auto;
+    display: flex;
+    justify-content: center;
+    color:  black;
+    cursor: pointer;
 }
 
 
 p{
-    width: 260px;
+    width: 400px;
     font-size: 10px;
+    margin-left: 5px;
 }
 
 
@@ -56,6 +98,7 @@ p{
     display: flex;
     justify-content: center;
     float: right;
+    cursor: pointer;
 
 }
 
@@ -71,7 +114,7 @@ p{
     border-width: 2px;
     border-color: black;
     border-style: solid;
-    height: 250px;
+    height: 330px;
     width: 400px;
     margin-left: auto;
     margin-right: auto;
@@ -103,7 +146,7 @@ h3{
 
 .centre_selec{
     border: solid black 4px;
-    height: 400px;
+    height: 460px;
     width: 600px;
     margin-left: auto;
     margin-right: auto;
@@ -119,4 +162,29 @@ h4{
 	margin-right: 5%;
 	font-size: 15px;
 	font-family: Didot;
+}
+
+.bout_reserv{
+    display: block;
+    border-width: 2px;
+    border-color: black;
+    border-style: solid;
+    background-color: rgb(250, 239, 240);
+    border-radius: 6px;
+    cursor: pointer;
+    height: 20px;
+    width: 70px;
+	margin-left: auto;
+    margin-right: auto;
+    display: flex;
+    justify-content: center;
+    color:  black;
+}
+
+[required] {
+    border: 2px solid  rgb(237, 13, 13);
+ }
+
+.erreur {
+    color:rgb(165, 12, 12);
 }

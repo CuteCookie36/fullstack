@@ -1,12 +1,15 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
 import { VaccinationCenter } from '../vaccination-center';
 import { VaccinationService } from '../vaccination.service';
-import { FormBuilder } from '@angular/forms';
+import { FormBuilder, NgForm } from '@angular/forms';
 import {MatIconModule} from '@angular/material/icon';
 import {MatDividerModule} from '@angular/material/divider';
 import {MatButtonModule} from '@angular/material/button';
 import { DatePipe } from '@angular/common';
 import { ReservationService } from '../reservation.service';
+import { Reservation } from '../reservation';
+import { Router } from '@angular/router';
+import { RouterTestingHarness } from '@angular/router/testing';
 
 @Component({
   selector: 'app-vaccination-center-list',
@@ -18,9 +21,13 @@ export class VaccinationCenterListComponent implements OnInit {
   firstName: string = '';
   lastName: string = '';
   mail: string = '';
-  startDate!: Date;
+  dateRDV: string = '';
   centers!: VaccinationCenter[];
   selected?: VaccinationCenter;
+  selectedCenterId: number | null = null;
+  //reservation!: Reservation;
+  reservation: Reservation = new Reservation();
+  borderColor: string = 'rgb(237, 13, 13)';
 
 /*
   centers: VaccinationCenter[] = [
@@ -34,8 +41,7 @@ export class VaccinationCenterListComponent implements OnInit {
 
  */
 
-
-  constructor(private service: VaccinationService, private service2: ReservationService){}
+  constructor(private service: VaccinationService, private service2: ReservationService, private router: Router){}
   ngOnInit(): void {
    // this.service.getAllVaccinationCenter().subscribe(resultCenters=>{this.centers = resultCenters;});
   }
@@ -45,8 +51,69 @@ export class VaccinationCenterListComponent implements OnInit {
     });
   }
 
-  saveReservation(){
-    //en attente de la fonction dans reservation.service.ts
+  onFirstNameChange() {
+    if (this.reservation.firstName) {
+      // Si le champ est rempli, changez la couleur de la bordure
+      this.borderColor = 'black'; 
+    }
+    else if (this.reservation.lastName) {
+      // Si le champ est rempli, changez la couleur de la bordure
+      this.borderColor = 'black'; 
+    }
+    else if (this.reservation.mail) {
+      // Si le champ est rempli, changez la couleur de la bordure
+      this.borderColor = 'black'; 
+    }
+    else if (this.reservation.dateRDV) {
+      // Si le champ est rempli, changez la couleur de la bordure
+      this.borderColor = 'black'; 
+    }   
+    else {
+      // Si le champ est vide, rétablissez la couleur de la bordure par défaut (rouge)
+      this.borderColor = 'rgb(237, 13, 13)';
+    }
+  }
+
+  saveReservation(center: VaccinationCenter){
+    
+    if(this.selectedCenterId !== null && this.isReservationValid(this.reservation)){
+      console.log("id du centre select : ", center.id);
+      console.log("prenom du patient : ", this.reservation.firstName);
+      console.log("nom du patient : ", this.reservation.lastName);
+      console.log("mail du patient : ", this.reservation.mail);
+      console.log("date de la réservation : ", this.reservation.dateRDV);
+      console.log("centre de vaccina : ", this.reservation.vaccinationCenter);
+      console.log("id centre de vaccina : ", this.reservation.vaccinationCenter.id);
+      if (this.reservation.vaccinationCenter && this.reservation.vaccinationCenter.id > 0){
+        this.reservation.vaccinationCenter.id = this.selectedCenterId;
+        this.service2.addReservation(this.reservation).subscribe(data=>{
+          console.log(data)
+        });
+      this.router.navigate(['reservation']);
+      } else {
+        console.error("L'ID du centre de vaccination est manquant ou invalide.");
+      }
+      
+    } else {
+      console.error("L'objet de réservation n'est pas correctement initialisé.");
+    }
+      
+  }
+
+  isReservationValid(reservation: Reservation): boolean {
+    if (
+      reservation &&
+      reservation.firstName &&
+      reservation.lastName &&
+      reservation.mail &&
+      reservation.dateRDV &&
+      reservation.vaccinationCenter 
+      //reservation.vaccinationCenter.id
+    ) {
+      return true;
+    } else {
+      return false;
+    }
   }
 
   isSpecialCenter(center: VaccinationCenter){
@@ -55,7 +122,14 @@ export class VaccinationCenterListComponent implements OnInit {
 
   selectCenter(center: VaccinationCenter){
     this.selected=center;
+    this.selectedCenterId = center.id;
+    console.log("ID du centre sélectionné : ", this.selectedCenterId);
+    console.log("ID du centre : ", center.id);
+    this.reservation.vaccinationCenter.id = this.selectedCenterId;
+    console.log("ID du centre dans la réservation : ", this.reservation.vaccinationCenter.id);
+    
   }
+
 
   onDeleted(center: VaccinationCenter){
     delete this.selected;
