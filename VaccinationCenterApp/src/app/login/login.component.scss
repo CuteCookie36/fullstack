@@ -5,7 +5,7 @@
     border-color: black;
     border-style: solid;
     border-radius: 10px;
-    height: 200px;
+    height: 250px;
     width: 500px;
 	margin-left: auto;
     margin-right: auto;
@@ -36,12 +36,13 @@
 
 .sumit_co3{
     border: solid black 2px;
-    width: 250px;
+    width: 200px;
     border-radius: 6px;
     background-color: rgba(225, 189, 224, 0.541);
     display: flex;
     justify-content: center;
-    float: left;
+    float: right;
+    
 }
 
 .sumit_co4{
@@ -52,6 +53,19 @@
     display: flex;
     justify-content: center;
     float: left;
+}
+
+.submit_form{
+    border-width: 2px;
+    border-color: black;
+    border-style: solid;
+    background-color: rgba(225, 189, 224, 0.541);
+    border-radius: 6px;
+    cursor: pointer;
+    height: 20px;
+    width: 100px;
+	margin-left: auto;
+    margin-right: auto;
 }
 
 .an_input{
