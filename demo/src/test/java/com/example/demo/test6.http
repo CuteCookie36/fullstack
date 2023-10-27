@@ -1,0 +1,11 @@
+POST http://localhost:8080/api/admin/utilisateurs
+Content-Type: application/json
+
+{
+    "login" : "cacao",
+    "password": "poires", 
+    "email": "bla@coucou.com",
+    "nom": "coucou",  
+    "prenom" : "pierre"    
+
+}

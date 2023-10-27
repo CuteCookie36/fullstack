@@ -14,13 +14,15 @@ public class UtilisateurServ {
     @Autowired
     private UtilisateurRepo userRepo;
 
-    public List<Utilisateur> findAllByLogin(String login){
-        return userRepo.findAllByLogin(login);
+    public Utilisateur SaveUtilisateur(Utilisateur user){
+        System.out.println("affichage erreur" + user.getId());
+        
+        return userRepo.save(user);
     }
+
     public List<Utilisateur> findAll(){
         return userRepo.findAll();
     }
-    public Utilisateur SaveUtilisateur(Utilisateur user){
-        return userRepo.save(user);
-    }
+
+    
 }

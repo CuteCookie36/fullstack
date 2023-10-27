@@ -6,7 +6,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.example.demo.VaccinationCenter.entity.Reservation;
-import com.example.demo.VaccinationCenter.entity.VaccinationCenter;
 import com.example.demo.VaccinationCenter.repository.ReservationRepository;
 
 @Service

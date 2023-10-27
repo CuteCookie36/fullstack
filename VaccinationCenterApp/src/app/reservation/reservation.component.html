@@ -3,7 +3,8 @@
         <div class = "sumit_retour">
           <a href="http://localhost:4200/centers">Retour à la page des centres</a>
         </div>
-        <button (click)="getAllReservation()">Voir toute les réservations</button>
+        <br><br>
+        <button class = "allreserv" (click)="getAllReservation()"><strong>Voir toute les réservations</strong></button>
         <ul>
             <li *ngFor="let reservation of reservations" [ngClass]="selected==reservation ? 'selected' : ''">
                 <!-- <strong>Numéro de reservation:</strong> {{ reservation.id }}<br> -->
