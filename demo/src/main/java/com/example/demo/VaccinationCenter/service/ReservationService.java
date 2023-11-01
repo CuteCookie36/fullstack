@@ -13,9 +13,8 @@ public class ReservationService {
     
     @Autowired
     private ReservationRepository reservRepository;
-    @Autowired
-    private VaccinCenterService vaccinCenterService;
 
+    
     public Reservation SaveReservation(Reservation reserv){
         //reserv.setVaccinationCenter(vaccinCenterService.findById(reserv.getVaccinationCenter().getId()));
         System.out.println("affichage erreur" + reserv.getVaccinationCenter().getId());
