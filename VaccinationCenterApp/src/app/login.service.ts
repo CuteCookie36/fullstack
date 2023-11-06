@@ -16,21 +16,27 @@ export class LoginService {
 
   constructor(private httpClient: HttpClient, private router: Router) { }
 
-  connect(username: string, password: string): Observable<any> {
+  connect(username: string, password: string):Observable<any> {
     let token = this.createToken(username, password);
-    console.log("username2 = " + username);
-    console.log("password2 = " + password);
+   
     let options = {
       headers: {
         'Authorization': token
       }
     };
-    console.log("token = " + token);
-    return this.httpClient.get<Utilisateur>('/api/public/utilisateur?login=' + username, options).pipe(map(() => {
+    console.log("username2 = " + username);
+    console.log("password2 = " + password);
+    // //console.log("token = " + token);
+
+    return this.httpClient.get<any>('/api/public/utilisateur?login=' + username)
+    .pipe(map(() => {
       this.password = password;
       this.username = username;
+      this.isLoggedSubject.next(true)
+
       console.log("Connected")
     }))
+
   }
 //return this.http.get<VaccinationCenter[]>("api/public/centers?city="+city);
   private createToken(username?: string, password?: string) {
@@ -63,9 +69,17 @@ export class LoginService {
     this.router.navigateByUrl("/centers").then(console.log).catch(console.error)
   }
 
-  getUtilisateur(): Observable<Utilisateur> {
+  getUtilisateurByLogin(username: string): Observable<Utilisateur> {
     console.log("test123");
-    return this.httpClient.get<Utilisateur>('/api/utilisateur', {});
+    return this.httpClient.get<Utilisateur>('/api/public/utilisateur?login='  + username);
+  }
+
+  getAllUtilisateurs(): Observable<Utilisateur[]> {
+    console.log("test456");
+    return this.httpClient.get<Utilisateur[]>('/api/public/utilisateur');
+  }
+  getCurrentUsername(): string{
+    return this.username ? this.username : "";
   }
 
 }

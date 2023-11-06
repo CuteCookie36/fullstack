@@ -13,6 +13,8 @@ import org.springframework.web.bind.annotation.RestController;
 import com.example.demo.VaccinationCenter.entity.Utilisateur;
 import com.example.demo.VaccinationCenter.service.UtilisateurServ;
 
+import net.bytebuddy.dynamic.DynamicType.Builder.FieldDefinition.Optional;
+
 
 @RestController
 @RequestMapping(value = "/api")
@@ -40,9 +42,18 @@ public class UtilisateurController {
     }
 
     @GetMapping("/public/utilisateur")
-    public List<Utilisateur> getUtilisateur(String login) {
-        return userService.findAllByLogin(login);
+    public java.util.Optional<Utilisateur> getUtilisateur(String login) {
+        return userService.findByLogin(login);
     } 
+    @GetMapping("/public/utilisateur/")
+    public List<Utilisateur> getAllUtilisateur() {
+        return userService.findAll();
+    } 
+
+    @GetMapping("/utilisateur")
+    public java.util.Optional<Utilisateur> getUtilisateur_f(String login) {
+        return userService.findByLogin(login);
+    }
             
         
 
