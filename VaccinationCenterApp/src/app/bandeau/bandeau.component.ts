@@ -12,6 +12,7 @@ import { ActivatedRoute } from '@angular/router';
 export class BandeauComponent implements OnInit{
   username: string = "";
   utilisateur!: Utilisateur;
+  valeur: boolean = false;
 
   constructor(private loginService: LoginService) {
   }
@@ -19,10 +20,12 @@ export class BandeauComponent implements OnInit{
   ngOnInit(): void {
     this.loginService.isLogged().subscribe(value => {
       console.log("valeur: " + value);
-      
+      console.log("valeur de valeur av: " + this.valeur);
       if (value) {
         this.username = this.loginService.getCurrentUsername()
         console.log("username user: " + this.username)
+        this.valeur = true;
+        console.log("valeur de valeur ap: " + this.valeur);
         //this.utilisateur.login = this.username;
         // this.loginService.getUtilisateur(this.utilisateur.login)
         // .subscribe(utilisateur => this.utilisateur = utilisateur);  
@@ -35,6 +38,7 @@ export class BandeauComponent implements OnInit{
 
   logout() {
     this.loginService.logout();
+    this.valeur = false;
   }
 
   testUsername(){

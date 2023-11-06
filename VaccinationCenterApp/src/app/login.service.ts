@@ -75,8 +75,8 @@ export class LoginService {
   }
 
   getAllUtilisateurs(): Observable<Utilisateur[]> {
-    console.log("test456");
-    return this.httpClient.get<Utilisateur[]>('/api/public/utilisateur');
+    console.log("test789");
+    return this.httpClient.get<Utilisateur[]>('/api/public/utilisateur/');
   }
   getCurrentUsername(): string{
     return this.username ? this.username : "";

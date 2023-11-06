@@ -14,6 +14,7 @@ export class LoginComponent implements OnInit {
   password: string = "";
   utilisateur?: Utilisateur;
   utilisateurs?: Utilisateur[];
+  selected?: Utilisateur;
 
     constructor(private loginService: LoginService, private router: Router) {}
 

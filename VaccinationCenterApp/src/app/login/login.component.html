@@ -24,3 +24,18 @@
       </div>
       
     </div>
+<br><br>
+
+  <div class = "allusers">
+    <button class = "allreserv" (click)="getAllUtilisateurs()"><strong>Voir tous les utilisateurs</strong></button>
+    <ul>
+      <li *ngFor="let user of utilisateurs" [ngClass]="selected==user ? 'selected' : ''">
+          <!-- <strong>Numéro de reservation:</strong> {{ reservation.id }}<br> -->
+          <strong>Prénom:</strong> {{ user.prenom }}<br>
+          <strong>Nom:</strong> {{ user.nom }}<br>
+        <strong>Adresse mail:</strong> {{ user.email }}<br>
+        <strong>Login:</strong> {{ user.login }}<br>
+        <hr> <!-- Une ligne horizontale pour séparer chaque centre -->
+      </li>
+  </ul>
+  </div>
