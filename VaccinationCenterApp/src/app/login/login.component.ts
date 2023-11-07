@@ -15,6 +15,7 @@ export class LoginComponent implements OnInit {
   utilisateur?: Utilisateur;
   utilisateurs?: Utilisateur[];
   selected?: Utilisateur;
+  role: string = "";
 
     constructor(private loginService: LoginService, private router: Router) {}
 
@@ -28,10 +29,16 @@ export class LoginComponent implements OnInit {
       this.loginService.connect(this.username, this.password).subscribe(() => {
         console.log("result auth: " + this.loginService.authHasBasic());
         console.log("user logged: " + this.loginService.isLogged());
-  
-        this.router.navigate(["centers"])
-        
+        //this.router.navigate(["centers"])
       });
+      this.role = this.loginService.getCurrentRole();
+      console.log("role: " + this.role);
+      if(this.utilisateur?.role == "MED"){
+        this.router.navigate(["centers"]);
+      }else{
+        this.router.navigate(["reservation"]);
+      }
+
       //console.log("username user: " + this.username);
       //console.log("login de notre user: " + this.loginService.getUtilisateur(this.username) );
       // this.loginService.getUtilisateurByLogin(this.username)

@@ -1,9 +1,6 @@
 package com.example.demo.VaccinationCenter.entity;
 
-import java.util.List;
-
 import jakarta.persistence.Column;
-import jakarta.persistence.ElementCollection;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
@@ -81,13 +78,13 @@ public class Utilisateur {
     }
 
     //////////////////////////////////
-    @ElementCollection
-    private List<String> roles;
+   //@ElementCollection
+    private String roles;
 
-    public List<String> getRoles(){
+    public String getRoles(){
         return roles;
     }
-    public void setRoles(List<String> roles){
+    public void setRoles(String roles){
         this.roles = roles;
     }
     

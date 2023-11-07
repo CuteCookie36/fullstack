@@ -13,8 +13,6 @@ import org.springframework.web.bind.annotation.RestController;
 import com.example.demo.VaccinationCenter.entity.Utilisateur;
 import com.example.demo.VaccinationCenter.service.UtilisateurServ;
 
-import net.bytebuddy.dynamic.DynamicType.Builder.FieldDefinition.Optional;
-
 
 @RestController
 @RequestMapping(value = "/api")

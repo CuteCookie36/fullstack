@@ -13,6 +13,7 @@ export class LoginService {
   
   private password?: string;
   private username?: string;
+  private role?: string;
 
   constructor(private httpClient: HttpClient, private router: Router) { }
 
@@ -80,6 +81,11 @@ export class LoginService {
   }
   getCurrentUsername(): string{
     return this.username ? this.username : "";
+  }
+
+  getCurrentRole(): string{
+    console.log("username de ce role: " + this.username);
+    return this.role ? this.role : "";
   }
 
 }
