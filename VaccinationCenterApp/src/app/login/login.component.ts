@@ -1,14 +1,17 @@
+
 import { HttpClient } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { LoginService } from '../login.service';
 import { Utilisateur } from '../utilisateur';
 
+
 @Component({
   selector: 'app-login',
   templateUrl: './login.component.html',
   styleUrls: ['./login.component.scss']
 })
+
 export class LoginComponent implements OnInit {
   username: string = "";
   password: string = "";
@@ -53,5 +56,6 @@ export class LoginComponent implements OnInit {
     
 
 
+  
 }
 
