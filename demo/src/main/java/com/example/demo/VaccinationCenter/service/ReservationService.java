@@ -26,6 +26,10 @@ public class ReservationService {
         return reservRepository.findAll();
     }
 
+    public List<Reservation> findAllByLastName(String lastName){
+        return reservRepository.findAllByLastNameLike(lastName);
+    }
+
     
 
 }

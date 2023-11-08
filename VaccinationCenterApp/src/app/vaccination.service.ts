@@ -33,6 +33,13 @@ export class VaccinationService {
     return this.http.get<VaccinationCenter[]>("api/public/centers?city="+city);
   }
 
+  addCenter(centre: VaccinationCenter): Observable<any> {
+    const headers = { 'content-type': 'application/json'}
+    const body=JSON.stringify(centre);
+    console.log(body)
+    return this.http.post("api/public/centers/save", body,{'headers':headers})
+  }
+
 
 
 }

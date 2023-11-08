@@ -1,0 +1,23 @@
+
+<h2>Bienvenue sur la page des docteurs</h2>
+<br><br>
+        <button class = "allreserv" (click)="getAllReservation()"><strong>Voir toutes les réservations</strong></button>
+
+<div class = "find_center">
+    <h2>&nbsp;<strong>Trouver un patient </strong></h2><p>(veuillez respecter la casse (majuscule, toute lettre)</p>
+    <div class = "recherche">
+        &nbsp;&nbsp;<input type="text" [(ngModel)]="lastName" placeholder="Rechercher par nom" name = "search" class = "search_bar">
+        <button class = "search_cent" (click)="searchByName()"><strong>Rechercher</strong></button>
+    </div>
+    
+    <ul>
+        <li *ngFor="let reservation of reservations" [ngClass]="selected==reservation ? 'selected' : ''">
+            <strong>Prénom:</strong> {{ reservation.firstName }}<br>
+            <strong>Nom:</strong> {{ reservation.lastName }}<br>
+            <strong>Adresse mail:</strong> {{ reservation.mail }}<br>
+            <strong>Date:</strong> {{ reservation.dateRDV }}<br>
+            
+          <hr>  
+        </li>
+    </ul>
+</div>

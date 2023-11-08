@@ -33,11 +33,11 @@ export class LoginComponent implements OnInit {
       this.role = this.loginService.getCurrentUserRole();
       console.log("role: " + this.role);
       if(this.role == "admin"){
-        this.router.navigate(["centers"]);
+        this.router.navigate(["administration"]);
       }else{
-        this.router.navigate(["reservation"]);
+        this.router.navigate(["doctor"]);
       }
-      
+
       });
 
     } 

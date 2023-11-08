@@ -52,5 +52,14 @@ public class VaccinCenterControlWeb {
         return reservService.findAll();
     }
 
+    @GetMapping(path = "centers/reservations")
+    public List<Reservation> getbyName(  
+        @RequestParam(name = "lastName", required = false) String lastName){
+            if(lastName == null){
+                return reservService.findAll();
+            }
+            return reservService.findAllByLastName(lastName);
+        
+        }
 
     }

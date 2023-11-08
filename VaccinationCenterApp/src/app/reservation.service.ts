@@ -20,4 +20,8 @@ export class ReservationService {
     console.log(body)
     return this.http.post("api/public/centers/reservation", body,{'headers':headers})
   }
+
+  getAllReservationByLastName(lastName: String) : Observable<Reservation[]>{
+    return this.http.get<Reservation[]>("/api/public/centers/reservations?lastName=" + lastName);
+  }
 }

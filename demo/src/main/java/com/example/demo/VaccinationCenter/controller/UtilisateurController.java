@@ -11,7 +11,6 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.example.demo.VaccinationCenter.entity.Utilisateur;
-import com.example.demo.VaccinationCenter.entity.VaccinationCenter;
 import com.example.demo.VaccinationCenter.service.UtilisateurServ;
 
 

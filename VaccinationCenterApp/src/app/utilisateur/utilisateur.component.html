@@ -68,16 +68,4 @@
 
 <br>
 
-<button class = "bout_getall" (click)="getAllUser()">Voir toute les utilisateurs</button>
-<br>
-
-    <ul>
-        <li *ngFor="let utilisateur of utilisateurs" [ngClass]="selected==utilisateur ? 'selected' : ''">
-            <strong>Login:</strong> {{ utilisateur.login }}<br>
-            <strong>Email:</strong> {{ utilisateur.email }}<br>
-            <strong>Nom:</strong> {{ utilisateur.nom }}<br>
-            <strong>Prénom:</strong> {{ utilisateur.prenom }}<br>
-            <hr> <!-- Une ligne horizontale pour séparer chaque centre -->
-        </li>
-    </ul>
 
