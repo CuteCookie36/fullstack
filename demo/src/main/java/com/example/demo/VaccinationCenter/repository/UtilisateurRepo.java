@@ -13,4 +13,5 @@ public interface UtilisateurRepo extends JpaRepository<Utilisateur, Integer> {
     
     public Optional<Utilisateur> findByLogin(String login);
     public List<Utilisateur> findAllByLogin(String login);
+    public List<Utilisateur> findAllByRolesLike(String roles);
 }

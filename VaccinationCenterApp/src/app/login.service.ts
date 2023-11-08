@@ -14,10 +14,11 @@ export class LoginService {
   private password?: string;
   private username?: string;
   private role?: string;
+  private connectedUser?: Utilisateur;
 
   constructor(private httpClient: HttpClient, private router: Router) { }
 
-  connect(username: string, password: string):Observable<any> {
+  connect(username: string, password: string):Observable<Utilisateur> {
     let token = this.createToken(username, password);
    
     let options = {
@@ -25,17 +26,21 @@ export class LoginService {
         'Authorization': token
       }
     };
-    console.log("username2 = " + username);
-    console.log("password2 = " + password);
+    //console.log("username2 = " + username);
+    //console.log("password2 = " + password);
     // //console.log("token = " + token);
 
-    return this.httpClient.get<any>('/api/public/utilisateur?login=' + username)
-    .pipe(map(() => {
+    return this.httpClient.get<Utilisateur>('/api/public/utilisateur?login=' + username)
+    .pipe(map((user: Utilisateur) => {
       this.password = password;
       this.username = username;
-      this.isLoggedSubject.next(true)
-
-      console.log("Connected")
+      this.isLoggedSubject.next(true);
+      this.connectedUser = user;
+      this.role = this.connectedUser.roles;
+      console.log("connected user role: " + this.connectedUser.roles)
+      console.log("le roles est: " + this.role);
+      //console.log("Connected")
+      return user;
     }))
 
   }
@@ -71,21 +76,22 @@ export class LoginService {
   }
 
   getUtilisateurByLogin(username: string): Observable<Utilisateur> {
-    console.log("test123");
+    //console.log("test123");
     return this.httpClient.get<Utilisateur>('/api/public/utilisateur?login='  + username);
   }
 
   getAllUtilisateurs(): Observable<Utilisateur[]> {
-    console.log("test789");
+    //console.log("test789");
     return this.httpClient.get<Utilisateur[]>('/api/public/utilisateur/');
   }
   getCurrentUsername(): string{
+    console.log("username de ce role1: " + this.username);
     return this.username ? this.username : "";
   }
 
-  getCurrentRole(): string{
-    console.log("username de ce role: " + this.username);
-    return this.role ? this.role : "";
+  getCurrentUserRole(): string {
+    console.log("connected user role v2: " + this.role)
+    return this.role ? this.role : "med";
   }
 
 }

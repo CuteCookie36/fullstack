@@ -49,5 +49,9 @@ public class UtilisateurServ implements UserDetailsService {
         return userRepo.findByLogin(login);
     }
 
+    public List<Utilisateur> findAllByRoles(String roles){
+        return userRepo.findAllByRolesLike(roles);
+    }
+
     
 }

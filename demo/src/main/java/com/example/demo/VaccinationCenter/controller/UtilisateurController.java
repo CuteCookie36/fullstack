@@ -1,16 +1,17 @@
 package com.example.demo.VaccinationCenter.controller;
 
 import java.util.List;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.example.demo.VaccinationCenter.entity.Utilisateur;
+import com.example.demo.VaccinationCenter.entity.VaccinationCenter;
 import com.example.demo.VaccinationCenter.service.UtilisateurServ;
 
 
@@ -42,7 +43,17 @@ public class UtilisateurController {
     @GetMapping("/public/utilisateur")
     public java.util.Optional<Utilisateur> getUtilisateur(String login) {
         return userService.findByLogin(login);
-    } 
+    }
+    @GetMapping("/public/utilisateurs")
+    public List<Utilisateur> getUser( 
+        @RequestParam(name = "roles", required = false) String roles){
+            if(roles == null){
+                return userService.findAll();
+            }
+            return userService.findAllByRoles(roles);
+        
+        } 
+
     @GetMapping("/public/utilisateur/")
     public List<Utilisateur> getAllUtilisateur() {
         return userService.findAll();

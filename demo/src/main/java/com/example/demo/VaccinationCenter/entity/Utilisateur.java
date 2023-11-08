@@ -79,6 +79,7 @@ public class Utilisateur {
 
     //////////////////////////////////
    //@ElementCollection
+   @Column(name = "roles")
     private String roles;
 
     public String getRoles(){
