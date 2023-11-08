@@ -1,0 +1,16 @@
+
+<div class = "connect" *ngIf="!valeur">
+    <a href="http://localhost:4200/connexion">Se connecter</a>
+</div>
+
+<div class = "user_con">
+    <!-- <p>partie user</p> -->
+    
+    <div class = "cocoa" *ngIf="valeur" >Utilisateur :  {{this.username}}
+        <!-- <button class = "sumit_co1" (click)="testUsername()" ><strong>test username</strong></button> -->
+    </div> 
+    <div class = "log_out" *ngIf="valeur" >
+        <button class = "sumit_co1" (click)="logout()" ><strong>Logout</strong></button> 
+    </div>   
+    <!--  -->
+</div>

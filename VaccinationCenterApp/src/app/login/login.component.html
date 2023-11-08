@@ -5,32 +5,41 @@
 
 
 
-<div class = "sumit_co4">
+<!-- <div class = "sumit_co4">
   <a href="http://localhost:4200/reservation">Vers la page de reservation</a>
-</div>
+</div> -->
 
 <div class = "connex">
     <h2>Connexion</h2>
     <br>
-    <form class = "pg_co">
-      <label for="uname">Login:&nbsp;</label>
-      <input type="text" required id="uname" name="uname" class="an_input" ><br><br>
-      <label for="pass">Password:&nbsp;</label>
-      <input type="password" id="pass" name="pass" class="an_input" ><br><br><br>
-      
-      <button class = "submit_form" (click)="login()"><strong>Se connecter</strong></button>
-      <br><br>
 
+    <label for="uname">Username:&nbsp;</label>
+    <input type="text" id="uname" class="an_input" [(ngModel)]="username"><br><br>
+    <label for="pass">Password:&nbsp;</label>
+    <input type="text" id="pass" class="an_input" [(ngModel)]="password"><br><br><br>
+      <button class = "sumit_co1" (click)="onSubmit()"><strong>Se connecter</strong></button>
       <!-- <div class = "sumit_co">
         <a href="http://localhost:4200/centers">Connexion</a>
       </div> -->
-      <span>Pas de compte ?</span>
-      <div class = "sumit_co3">
-        <a href="http://localhost:4200/new_user">Création d'un utilisateur</a>
-      </div>
-    </form>
+
+
       
     
 
             
     </div>
+<br><br>
+
+  <!-- <div class = "allusers">
+    <button class = "allreserv" (click)="getAllUtilisateurs()"><strong>Voir tous les utilisateurs</strong></button>
+    <ul>
+      <li *ngFor="let user of utilisateurs" [ngClass]="selected==user ? 'selected' : ''">
+          
+          <strong>Prénom:</strong> {{ user.prenom }}<br>
+          <strong>Nom:</strong> {{ user.nom }}<br>
+        <strong>Adresse mail:</strong> {{ user.email }}<br>
+        <strong>Login:</strong> {{ user.login }}<br>
+        <hr> 
+      </li>
+  </ul>
+  </div> -->

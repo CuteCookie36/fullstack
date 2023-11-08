@@ -77,6 +77,16 @@ public class Utilisateur {
         this.email = email;
     }
 
-    
+    //////////////////////////////////
+   //@ElementCollection
+   @Column(name = "roles")
+    private String roles;
+
+    public String getRoles(){
+        return roles;
+    }
+    public void setRoles(String roles){
+        this.roles = roles;
+    }
     
 }

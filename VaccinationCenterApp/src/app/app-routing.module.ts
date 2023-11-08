@@ -7,6 +7,8 @@ import { LoginComponent } from './login/login.component';
 import { ReservationComponent } from './reservation/reservation.component';
 import { InfosPersoComponent } from './infos-perso/infos-perso.component';
 import { UtilisateurComponent } from './utilisateur/utilisateur.component';
+import { DoctorComponent } from './doctor/doctor.component';
+import { AdministrationComponent } from './administration/administration.component';
 
 
 const routes: Routes = [
@@ -15,6 +17,8 @@ const routes: Routes = [
   {path: "connexion",           component: LoginComponent},
   {path: "reservation",         component: ReservationComponent},
   {path: "infos_perso",         component: InfosPersoComponent},
+  {path: "doctor",              component: DoctorComponent},
+  {path: "administration",       component: AdministrationComponent},
   {path: "new_user",            component: UtilisateurComponent},
   {path: '', redirectTo: '/centers', pathMatch: 'full'},
 ];
