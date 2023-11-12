@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, Input } from '@angular/core';
 import { Utilisateur } from '../utilisateur';
 import { UtilisateurService } from '../utilisateur.service';
 import { Router } from '@angular/router';
@@ -33,6 +33,7 @@ export class AdministrationComponent {
   centers!: VaccinationCenter[];
   selectedV?: VaccinationCenter;
   center!: VaccinationCenter;
+  
     
   constructor(private service: UtilisateurService, private router: Router, private service2: VaccinationService, ){}
   ngOnInit(): void {

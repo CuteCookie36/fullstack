@@ -15,6 +15,7 @@ export class DoctorComponent {
   maDate = new Date();
   reservations!: Reservation[];
   selected?: Reservation;
+  selectedReservId: number | null = null;
 
   constructor(private service: ReservationService){}
 
@@ -35,5 +36,23 @@ export class DoctorComponent {
     console.log("ca passe");
   }
 
+  updateValidation(reservationID: number, updateValide: number){
+    if (this.selected && this.selected.id !== undefined) {
+      console.log("id de la reserv: " + this.selected.id);
+      console.log("reserv id : " + this.selectedReservId);
+      this.service.updateValidReservation(this.selected.id, updateValide);
+    }else{
+      console.log("il y a du null !");
+    }
+      
+  }
+
+  selectReservation(reservation: Reservation){
+    this.selected=reservation;
+    this.selectedReservId = reservation.id;
+    console.log("ID du centre sélectionné : ", this.selectedReservId);
+    console.log("ID du centre : ", reservation.id);
+    
+  }
 
 }

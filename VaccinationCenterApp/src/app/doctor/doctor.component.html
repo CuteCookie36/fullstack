@@ -16,8 +16,17 @@
             <strong>Nom:</strong> {{ reservation.lastName }}<br>
             <strong>Adresse mail:</strong> {{ reservation.mail }}<br>
             <strong>Date:</strong> {{ reservation.dateRDV }}<br>
-            
+            <button class = "select_center" (click)="selectReservation(reservation)"><Strong>Sélectionner</Strong></button><br>
           <hr>  
         </li>
-    </ul>
+    </ul>  
 </div>
+
+<div *ngIf="selected" class = "detail">
+    <strong>ID: </strong> {{selected.id }} <br>
+    <strong>Prénom:</strong> {{ selected.firstName | uppercase}}<br>
+    <strong>Nom:</strong> {{ selected.lastName | uppercase}}<br>
+
+</div>
+<br>
+<button class = "bt_valid" (click)="updateValidation(selected!.id, 1)"><strong>Valider</strong></button>

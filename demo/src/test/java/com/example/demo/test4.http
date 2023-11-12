@@ -2,13 +2,14 @@ POST http://localhost:8080/api/public/centers/reservation
 Content-Type: application/json
 
 {
-    "firstName" : "hohohoho",
-    "lastName": "hiaaaaa",
-    "mail": "salut@coucou.com",
-    "dateRDV" : "2023-10-16",
+    "firstName" : "poivron",
+    "lastName": "pesto",
+    "mail": "basilic@coucou.com",
+    "dateRDV" : "2023-10-19",
     "vaccinationCenter" : {
-        "id" : 2
-        }
+        "id" : 1
+        },
+    "valid" : 0
 
 }
 

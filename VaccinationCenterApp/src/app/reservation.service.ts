@@ -16,12 +16,19 @@ export class ReservationService {
 
   addReservation(reservation:Reservation): Observable<any> {
     const headers = { 'content-type': 'application/json'}
-    const body=JSON.stringify(reservation);
+    const body=JSON.stringify(reservation)
     console.log(body)
     return this.http.post("api/public/centers/reservation", body,{'headers':headers})
   }
 
   getAllReservationByLastName(lastName: String) : Observable<Reservation[]>{
     return this.http.get<Reservation[]>("/api/public/centers/reservations?lastName=" + lastName);
+  }
+
+  updateValidReservation(reservationId: number, newValidValue: number){
+    const headers = { 'content-type': 'application/json'}
+    const body=JSON.stringify({reservationId, newValidValue})
+    console.log("body = " + body)
+    return this.http.post("api/public/centers/reservation/update-valid", body,{'headers':headers})
   }
 }
