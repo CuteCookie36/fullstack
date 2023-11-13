@@ -15,7 +15,7 @@ import { InfosPersoComponent } from './infos-perso/infos-perso.component';
 import { BandeauComponent } from './bandeau/bandeau.component';
 import { DoctorComponent } from './doctor/doctor.component';
 import { AdministrationComponent } from './administration/administration.component';
-
+import { MatCardModule } from '@angular/material/card';
 
 
 
@@ -37,6 +37,7 @@ import { AdministrationComponent } from './administration/administration.compone
     HttpClientModule,
     AppRoutingModule,
     FormsModule,
+    MatCardModule,
     BrowserAnimationsModule
   ],
   providers: [],

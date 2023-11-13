@@ -53,5 +53,13 @@ public class UtilisateurServ implements UserDetailsService {
         return userRepo.findAllByRolesLike(roles);
     }
 
+
+    public boolean validationUtilisateur(String login, String password, String nom, String prenom, String mail, String roles){
+        Utilisateur utilisateur = userRepo.findByLogin(login).get();
+        this.userRepo.save(utilisateur);
+
+        return true;
+    }
+
     
 }
