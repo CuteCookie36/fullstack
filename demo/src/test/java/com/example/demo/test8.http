@@ -1,0 +1,9 @@
+//GET http://localhost:8080/api/public/utilisateur?login=salad
+
+//GET http://localhost:8080/api/public/login?login=cacao
+//GET http://localhost:8080/api/utilisateur
+
+//GET http://localhost:8080/api/public/utilisateur/
+
+
+GET http://localhost:8080/api/public/utilisateurs?roles=med

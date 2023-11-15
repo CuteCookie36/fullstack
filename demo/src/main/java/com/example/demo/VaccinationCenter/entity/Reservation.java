@@ -94,6 +94,16 @@ public class Reservation {
     // public void setVaccinationCenterId(Integer vaccinationCenterId) {
     //     this.vaccinationCenterId = vaccinationCenterId;
     // }
+    /////////////////////////////
+    @Column(name="Valider", columnDefinition = "int default 0")
+    private Integer valid;
 
+    public Integer getValid() {
+        return valid;
+    }
+
+    public void setValid(Integer valid) {
+        this.valid = valid;
+    }
 
 }

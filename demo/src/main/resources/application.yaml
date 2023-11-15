@@ -9,6 +9,16 @@ spring:
     database-platform: org.hibernate.dialect.PostgreSQLDialect
     show-sql: true
     hibernate.ddl-auto: update
+#le mettre en commentaires si il y a des données dans la bdd
 
-    #le mettre en commentaires si il y a des données dans la bdd
+  # management:
+  #   endpoints:
+  #     jmx:
+  #       exposure:
+  #         include: info,health,beans,metrics,endpoints,mappings
+  #     web:
+  #       exposure:
+  #         include: health,info,prometheus,metrics
+
+    
 

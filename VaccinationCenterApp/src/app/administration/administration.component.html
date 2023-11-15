@@ -1,0 +1,185 @@
+
+<h2>Bienvenue sur la page Administration</h2>
+<br><br>
+<br>
+<button class = "bout_getall" (click)="afficherusers()"><strong>Voir tous les utilisateurs</strong> </button>    
+<br>
+<div class = "save_center" *ngIf="valeur4" >
+    <!-- <button class = "bout_getall" (click)="getAllUser()"><strong>Voir tous les utilisateurs</strong> </button> -->
+    <br>
+
+    <ul>
+        <li *ngFor="let utilisateur of utilisateurs" [ngClass]="selected==utilisateur ? 'selected' : ''">
+            <strong>Login:</strong> {{ utilisateur.login }}<br>
+            <strong>Email:</strong> {{ utilisateur.email }}<br>
+            <strong>Nom:</strong> {{ utilisateur.nom }}<br>
+            <strong>Prénom:</strong> {{ utilisateur.prenom }}<br>
+            <strong>Role:</strong> {{utilisateur.roles }}<br>
+            <hr> 
+        </li>
+    </ul>
+</div>
+<!---------------------------------------------->
+<br>
+<button class = "bout_getall2" (click)="affichercentres()"><strong>Voir tous les centres de vaccination</strong> </button>    
+<br>
+<div class = "save_center" *ngIf="valeur3" >
+    <!-- <button class = "bout_getall2" (click)="getAllCenters()"><strong>Voir tous les centres de vaccination</strong> </button> -->
+
+    <ul>
+        <li *ngFor="let centre of centers" [ngClass]="selectedV==centre ? 'selected' : ''">
+          <strong>Nom:</strong> {{ centre.name }}<br>
+          <strong>Adresse:</strong> {{ centre.adress }}<br>
+          <strong>Ville:</strong> {{ centre.city }}<br>
+          
+          <hr> <!-- Une ligne horizontale pour séparer chaque centre -->
+        </li>
+    </ul>
+</div>
+<!------------------------------------------------>
+    <br>
+<button class = "bout_getall3" (click)="afficherCreationCentre()"><strong>Créer un centre de vaccination</strong> </button>    
+    <br>
+<div class = "save_center" *ngIf="valeur" >
+    <div class = "titre">
+        <h3>Veuillez rentrer les informations du centre</h3>
+    </div>
+    <div class = "Info_perso">
+        <br><br>
+        <div *ngIf="nameRef.invalid && nameRef.touched">
+            <div class = "erreur"><strong>Le nom est obligatoire</strong></div>
+        </div>
+        &nbsp;<label for="fname">Name:</label>
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<input type="text" [(ngModel)]="centree.name" placeholder="nom du centre" 
+                required 
+                #nameRef="ngModel"
+                (ngModelChange)="onFirstNameChange()" 
+                [ngStyle]="{'border': '2px solid ' + borderColor}"><br><br>
+        
+        <div *ngIf="adressRef.invalid && adressRef.touched">
+            <div class = "erreur"><strong>L'adresse est obligatoire</strong></div>
+        </div>
+        &nbsp;<label for="laname">L'adresse:</label>
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<input type="text" [(ngModel)]="centree.adress" placeholder="adresse" 
+                required
+                #adressRef="ngModel"
+                (ngModelChange)="onFirstNameChange()" 
+                [ngStyle]="{'border': '2px solid ' + borderColor}"><br><br>
+        
+        <div *ngIf="cityRef.invalid && cityRef.touched">
+            <div class = "erreur"><strong>La ville est obligatoire</strong></div>
+        </div>
+        &nbsp;<label for="mail">Ville:</label>
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+        <input type="text" [(ngModel)]="centree.city" placeholder="ville" 
+                required
+                #cityRef="ngModel"
+                (ngModelChange)="onFirstNameChange()" 
+                [ngStyle]="{'border': '2px solid ' + borderColor}"><br><br>
+        
+        <div *ngIf="postalCodeRef.invalid && postalCodeRef.touched">
+            <div class = "erreur"><strong>Le code postal est obligatoire</strong></div>
+        </div>
+        &nbsp;<label for="text">Code postal:</label>
+        
+        &nbsp;<input type="text" [(ngModel)]="centree.postalCode" placeholder="code postal"
+                required
+                #postalCodeRef="ngModel"
+                (ngModelChange)="onFirstNameChange()" 
+                [ngStyle]="{'border': '2px solid ' + borderColor}"><br><br>
+
+
+        <button class = "bout_reserv" (click)="saveCenter()"><strong>Enregistrer</strong></button>
+       
+    </div>
+
+</div>
+<!--------------------------------------------------------->
+<br>
+<button class = "bout_getall4" (click)="afficherCreationUser()"><strong>Créer un utilisateur</strong> </button>    
+<br>
+
+<div class = "save_center" *ngIf="valeur2" >
+    <div class = "titre">
+        <h3>Veuillez rentrer les informations sur l'utilisateur</h3>
+    </div>
+    <div class = "Info_perso2">
+        <br><br>
+        <div *ngIf="loginRef.invalid && loginRef.touched">
+            <div class = "erreur"><strong>Le login est obligatoire</strong></div>
+        </div>
+        &nbsp;<label for="flogin">Login:</label>
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+        <input type="text" [(ngModel)]="utilisateur.login" placeholder="login" 
+                required 
+                #loginRef="ngModel"
+                (ngModelChange)="onFirstNameChange2()" 
+                [ngStyle]="{'border': '2px solid ' + borderColor}"><br><br>
+        
+        <div *ngIf="passwordRef.invalid && passwordRef.touched">
+            <div class = "erreur"><strong>Le mot de passe est obligatoire</strong></div>
+        </div>
+        &nbsp;<label for="fpassword">Password:</label>
+        &nbsp;<input type="text" [(ngModel)]="utilisateur.password" placeholder="password" 
+                required
+                #passwordRef="ngModel"
+                (ngModelChange)="onFirstNameChange2()" 
+                [ngStyle]="{'border': '2px solid ' + borderColor}"><br><br>
+        
+        <div *ngIf="emailRef.invalid && emailRef.touched">
+            <div class = "erreur"><strong>L'email est obligatoire</strong></div>
+        </div>
+        &nbsp;<label for="femail">Email:</label>
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+        <input type="mail" [(ngModel)]="utilisateur.email" placeholder="mail@mail.com" 
+                required
+                #emailRef="ngModel"
+                (ngModelChange)="onFirstNameChange2()" 
+                [ngStyle]="{'border': '2px solid ' + borderColor}"><br><br>
+        
+        <div *ngIf="nomRef.invalid && nomRef.touched">
+            <div class = "erreur"><strong>Le nom est obligatoire</strong></div>
+        </div>
+        &nbsp;<label for="fnom">Nom:</label>
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+        &nbsp;<input type="text" [(ngModel)]="utilisateur.nom"  placeholder="nom"
+            required
+            #nomRef="ngModel"
+            (ngModelChange)="onFirstNameChange2()" 
+            [ngStyle]="{'border': '2px solid ' + borderColor}"><br><br>
+
+        <div *ngIf="prenomRef.invalid && prenomRef.touched">
+            <div class = "erreur"><strong>Le prénom est obligatoire</strong></div>
+        </div>
+        &nbsp;<label for="fprenom">Prénom:</label>
+        &nbsp;&nbsp;&nbsp;
+        &nbsp;<input type="text" [(ngModel)]="utilisateur.prenom" placeholder="prenom"
+            required
+            #prenomRef="ngModel"
+            (ngModelChange)="onFirstNameChange2()" 
+            [ngStyle]="{'border': '2px solid ' + borderColor}"><br><br>
+        
+        <fieldset>
+            <legend>Choisis le role de l'utilisateur:</legend>
+              
+            <div>
+                <input type="radio" id="med" [(ngModel)]="utilisateur.roles" name="role" value="med" />
+                <label for="med">Médecin</label>
+            </div>
+              
+            <div>
+                <input type="radio" id="adm" [(ngModel)]="utilisateur.roles" name="role" value="admin"/>
+                <label for="adm">Administrateur</label>
+            </div>
+        </fieldset>
+        <button (click)="cocheCases()">test coche</button>
+        <br>
+        <button class = "bout_reserv" (click)="saveUtilisateur()"><strong>Enregistrer</strong></button>
+
+    </div>
+
+</div>
+
+
+
+

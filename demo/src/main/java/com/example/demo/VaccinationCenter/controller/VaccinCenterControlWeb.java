@@ -1,8 +1,10 @@
 package com.example.demo.VaccinationCenter.controller;
 
 import java.util.List;
+import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -52,5 +54,27 @@ public class VaccinCenterControlWeb {
         return reservService.findAll();
     }
 
+    @GetMapping(path = "centers/reservations")
+    public List<Reservation> getbyName(  
+        @RequestParam(name = "lastName", required = false) String lastName){
+            if(lastName == null){
+                return reservService.findAll();
+            }
+            return reservService.findAllByLastName(lastName);
+        
+        }
+
+    @PostMapping("centers/reservation/update-valid")
+    public ResponseEntity<String> updateValidForReservation(@RequestBody Map<String, Object> updateRequest) {
+        int reservationId = Integer.parseInt(updateRequest.get("reservationId").toString());
+        int newValidValue = (int) updateRequest.get("newValidValue");
+
+        // Recherche de la réservation dans la base de données par son identifiant
+        // Mettre à jour la valeur de la colonne "valid" pour cette réservation
+        // Code pour effectuer la mise à jour dans la base de données
+        reservService.updateValidForReservation(reservationId, newValidValue);
+        // Réponse
+        return ResponseEntity.ok("La valeur de valid pour la réservation " + reservationId + " a été mise à jour.");
+    }
 
     }

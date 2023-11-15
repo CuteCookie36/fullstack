@@ -12,7 +12,10 @@ import { LoginComponent } from './login/login.component';
 import { UtilisateurComponent } from './utilisateur/utilisateur.component';
 import { ReservationComponent } from './reservation/reservation.component';
 import { InfosPersoComponent } from './infos-perso/infos-perso.component';
-
+import { BandeauComponent } from './bandeau/bandeau.component';
+import { DoctorComponent } from './doctor/doctor.component';
+import { AdministrationComponent } from './administration/administration.component';
+import { MatCardModule } from '@angular/material/card';
 
 
 
@@ -24,13 +27,17 @@ import { InfosPersoComponent } from './infos-perso/infos-perso.component';
     LoginComponent,
     UtilisateurComponent,
     ReservationComponent,
-    InfosPersoComponent
+    InfosPersoComponent,
+    BandeauComponent,
+    DoctorComponent,
+    AdministrationComponent
   ],
   imports: [
     BrowserModule,
     HttpClientModule,
     AppRoutingModule,
     FormsModule,
+    MatCardModule,
     BrowserAnimationsModule
   ],
   providers: [],

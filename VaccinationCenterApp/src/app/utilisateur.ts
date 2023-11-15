@@ -4,4 +4,5 @@ export class Utilisateur {
     email: string = '';
     nom: string = '';
     prenom: string = '';
+    roles: string = '';
   }

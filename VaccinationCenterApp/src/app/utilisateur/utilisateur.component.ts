@@ -9,7 +9,7 @@ import { Router } from '@angular/router';
   styleUrls: ['./utilisateur.component.scss']
 })
 export class UtilisateurComponent {
-    email: string = '';
+  email: string = '';
     login: string = '';
     password: string = '';
     prenom: string = '';
@@ -67,7 +67,8 @@ export class UtilisateurComponent {
       this.service.addUtilisateur(this.utilisateur).subscribe(data=>{
           console.log(data)
       });
-      this.router.navigate(['utilisateur']);
+      this.router.navigate(['connexion']);
+      alert('SIGNIN SUCCESFUL');
       } else {
         console.error("L'objet de l'utilisateur n'est pas correctement initialisé.");
       }

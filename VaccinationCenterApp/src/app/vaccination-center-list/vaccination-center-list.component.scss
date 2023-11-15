@@ -90,17 +90,7 @@ p{
     justify-content: center;
 }
 
-.connect{
-    border: solid black 2px;
-    width: 90px;
-    border-radius: 6px;
-    background-color: rgba(225, 189, 224, 0.541);
-    display: flex;
-    justify-content: center;
-    float: right;
-    cursor: pointer;
 
-}
 
 .titre{
     width: 500px;
@@ -108,6 +98,7 @@ p{
 	margin-right: auto; 
     justify-content: center; 
 }
+
 
 .Info_perso{
     background-color: rgb(252, 200, 208);;
@@ -187,4 +178,35 @@ h4{
 
 .erreur {
     color:rgb(165, 12, 12);
+}
+
+
+.sumit_co2{
+    border: solid black 2px;
+    width: 150px;
+    border-radius: 6px;
+    background-color: rgba(225, 189, 224, 0.541);
+    display: flex;
+    justify-content: center;
+    float: left;
+}
+
+.sumit_co3{
+    border: solid black 2px;
+    width: 250px;
+    border-radius: 6px;
+    background-color: rgba(225, 189, 224, 0.541);
+    display: flex;
+    justify-content: center;
+    float: left;
+}
+
+.sumit_co4{
+    border: solid black 2px;
+    width: 200px;
+    border-radius: 6px;
+    background-color: rgba(225, 189, 224, 0.541);
+    display: flex;
+    justify-content: center;
+    float: left;
 }
