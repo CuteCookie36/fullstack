@@ -36,6 +36,13 @@ public class VaccinCenterControlWeb {
             return centerService.findAllByCity(city);
         
         }
+
+    @GetMapping(path = "/centers/utilisateur") 
+    public VaccinationCenter getCenterByUser(String login){
+        return centerService.findByUtilisateursLogin(login);
+        
+    }
+    
     
     @PostMapping(path = "/centers/save" )
     public VaccinationCenter save(
