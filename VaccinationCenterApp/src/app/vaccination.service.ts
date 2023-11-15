@@ -33,6 +33,10 @@ export class VaccinationService {
     return this.http.get<VaccinationCenter[]>("api/public/centers?city="+city);
   }
 
+  getCenterbyUserLogin(login: String) : Observable<VaccinationCenter>{
+    return this.http.get<VaccinationCenter>("api/public/centers/utilisateur?login="+login);
+  }
+
   addCenter(centre: VaccinationCenter): Observable<any> {
     const headers = { 'content-type': 'application/json'}
     const body=JSON.stringify(centre);
