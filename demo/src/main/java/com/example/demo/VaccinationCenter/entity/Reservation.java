@@ -74,7 +74,7 @@ public class Reservation {
     ////////////////////////////
     
     @ManyToOne
-    @JsonIgnoreProperties({"reservation"})
+    @JsonIgnoreProperties({"reservation", "utilisateurs"})
     private VaccinationCenter vaccinationCenter;
 
     public VaccinationCenter getVaccinationCenter() {

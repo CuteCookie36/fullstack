@@ -63,6 +63,15 @@ public class VaccinCenterControlWeb {
             return reservService.findAllByLastName(lastName);
         
         }
+    @GetMapping(path = "centers/reservations/vaccincenter")
+    public List<Reservation> getbyVaccinCenterId(  
+        @RequestParam(name = "Id", required = false) int Id){
+            if(Id == 0){
+                return reservService.findAll();
+            }
+            return reservService.findAllByVaccinationCenterId(Id);
+        
+        }
 
     @PostMapping("centers/reservation/update-valid")
     public ResponseEntity<String> updateValidForReservation(@RequestBody Map<String, Object> updateRequest) {
