@@ -32,25 +32,7 @@ export class DoctorComponent {
   constructor(private loginService: LoginService, private service: ReservationService, private service2: VaccinationService){}
 
   ngOnInit(): void {
-    this.loginService.isLogged().subscribe(value => {
-      console.log("valeur: " + value);
-      console.log("valeur de valeur av: " + this.valeur);
-      if (value) {
-        this.username = this.loginService.getCurrentUsername()
-        console.log("username user: " + this.username)
-        this.valeur = true;
-      } else {
-        //this.utilisateur = undefined;
-        alert("utilisateur undefined");
-      }
-    },)
-    console.log("valeur: " + this.valeur);
-    console.log("username user: " + this.username);
-
-    this.service2.getCenterbyUserLogin(this.username).subscribe(data => {
-      this.centre = data;
-    });
-    console.log("code postal du centre: " + this.centre.postalCode);
+    
    }
 
   getAllReservation() {

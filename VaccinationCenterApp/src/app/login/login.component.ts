@@ -4,6 +4,7 @@ import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { LoginService } from '../login.service';
 import { Utilisateur } from '../utilisateur';
+import { VaccinationCenter } from '../vaccination-center';
 
 
 @Component({
@@ -19,6 +20,8 @@ export class LoginComponent implements OnInit {
   utilisateurs?: Utilisateur[];
   selected?: Utilisateur;
   role: string = "";
+  id: Number | null = null;
+  
 
     constructor(private loginService: LoginService, private router: Router) {}
 
@@ -34,7 +37,10 @@ export class LoginComponent implements OnInit {
         //console.log("user logged: " + this.loginService.isLogged());
         //this.router.navigate(["centers"])
       this.role = this.loginService.getCurrentUserRole();
-      console.log("role: " + this.role);
+      this.id = this.loginService.getCurrentVaccinationCenterID();
+      
+      console.log("l'id juste après la connexion " + this.id);
+      //console.log("role: " + this.role);
       if(this.role == "admin"){
         this.router.navigate(["administration"]);
       }else{

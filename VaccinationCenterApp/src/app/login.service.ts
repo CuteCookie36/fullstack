@@ -3,6 +3,7 @@ import { Injectable } from '@angular/core';
 import { Router } from '@angular/router';
 import { Observable, Subject, map } from 'rxjs';
 import { Utilisateur } from './utilisateur';
+import { VaccinationCenter } from './vaccination-center';
 
 @Injectable({
   providedIn: 'root'
@@ -15,6 +16,8 @@ export class LoginService {
   private username?: string;
   private role?: string;
   private connectedUser?: Utilisateur;
+  private VaccinCenterId?: Number;
+  private VaccinCenter!: VaccinationCenter;
 
   constructor(private httpClient: HttpClient, private router: Router) { }
 
@@ -37,8 +40,11 @@ export class LoginService {
       this.isLoggedSubject.next(true);
       this.connectedUser = user;
       this.role = this.connectedUser.roles;
-      console.log("connected user role: " + this.connectedUser.roles)
-      console.log("le roles est: " + this.role);
+      this.VaccinCenterId = this.connectedUser.vaccinationCenter.id;
+      //console.log("connected user role: " + this.connectedUser.roles)
+      //console.log("id vaccinC: " + this.connectedUser.vaccinationCenter.id)
+      //console.log("id VaccinC 2: " + this.VaccinCenterId)
+      //console.log("le roles est: " + this.role);
       //console.log("Connected")
       return user;
     }))
@@ -85,13 +91,23 @@ export class LoginService {
     return this.httpClient.get<Utilisateur[]>('/api/public/utilisateur/');
   }
   getCurrentUsername(): string{
-    console.log("username de ce role1: " + this.username);
+    //console.log("username de ce role1: " + this.username);
     return this.username ? this.username : "";
   }
 
   getCurrentUserRole(): string {
-    console.log("connected user role v2: " + this.role)
+    //console.log("connected user role v2: " + this.role)
     return this.role ? this.role : "med";
+  }
+
+  getCurrentVaccinationCenterID(): Number{
+    //console.log("l'id du vaccin center de lui est: " + this.VaccinCenterId)
+    return this.VaccinCenterId ? this.VaccinCenterId: 1 ;
+  }
+
+  getVaccinationCenterById(id: Number): Observable<VaccinationCenter>{
+    console.log("l'id du vaccin center de lui est: " + this.VaccinCenterId)
+    return this.httpClient.get<VaccinationCenter>('/api/public/centers/idd?Id='  + id);
   }
 
 }
