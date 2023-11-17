@@ -29,6 +29,6 @@ export class ReservationService {
     const headers = { 'content-type': 'application/json'}
     const body=JSON.stringify({reservationId, newValidValue})
     console.log("body = " + body)
-    return this.http.post("api/public/centers/reservation/update-valid", body,{'headers':headers})
+    return this.http.post("api/public/centers/reservation/update-valid", body,{'headers':headers,responseType: 'text' })
   }
 }
