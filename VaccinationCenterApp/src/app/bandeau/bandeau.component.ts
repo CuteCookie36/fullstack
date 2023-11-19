@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { Utilisateur } from '../utilisateur';
 import { LoginService } from '../login.service';
 import { ActivatedRoute, Router } from '@angular/router';
+import { VaccinationCenter } from '../vaccination-center';
 
 
 @Component({
@@ -14,6 +15,12 @@ export class BandeauComponent implements OnInit{
   utilisateur!: Utilisateur;
   valeur: boolean = false;
   role: string = "";
+  id!: Number;
+  name: string = '';
+  adress: string = '';
+  postalCode: string = '';
+  city: string = '';
+  private VaccinCenter!: VaccinationCenter;
 
   constructor(private loginService: LoginService, private router: Router) {
   }
@@ -24,7 +31,17 @@ export class BandeauComponent implements OnInit{
       //console.log("valeur de valeur av: " + this.valeur);
       if (value) {
         this.username = this.loginService.getCurrentUsername()
-        //console.log("username user: " + this.username)
+        this.id = this.loginService.getCurrentVaccinationCenterID()
+        
+        this.loginService.getVaccinationCenterById(this.id).subscribe(data => {
+          this.VaccinCenter = data;
+          this.city = this.VaccinCenter.city;
+          this.adress = this.VaccinCenter.adress;
+          this.name = this.VaccinCenter.name;
+        });
+
+        //this.VaccinCenter = this.loginService.getCurrentVaccinationCenter()
+        //console.log("city du vaciinc: " + this.VaccinCenter.city)
         this.valeur = true;
         //console.log("valeur de valeur ap: " + this.valeur);
         //this.utilisateur.login = this.username;
@@ -47,6 +64,16 @@ export class BandeauComponent implements OnInit{
     console.log("username test: " + this.username);
   }
 
+  getVaccinCbyID(){
+    this.loginService.getVaccinationCenterById(this.id).subscribe(data => {
+      this.VaccinCenter = data;
+      this.city = this.VaccinCenter.city;
+      this.adress = this.VaccinCenter.adress;
+      this.name = this.VaccinCenter.name;
+    });
+    
+    console.log("ville du vC: " + this.VaccinCenter.city);
+  }
 
 
 }

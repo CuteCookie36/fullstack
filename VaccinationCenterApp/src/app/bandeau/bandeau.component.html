@@ -9,6 +9,14 @@
     <div class = "cocoa" *ngIf="valeur" >Utilisateur :  {{this.username}}
         <!-- <button class = "sumit_co1" (click)="testUsername()" ><strong>test username</strong></button> -->
     </div> 
+
+    <div class = "centre_doctor" *ngIf="valeur">
+        <!-- <button class = "allreserv" (click)="getVaccinCbyID()"><strong>Voir le centre de vaccination associé</strong></button> -->
+        <strong>&nbsp;Nom:</strong> {{name}}  <br>
+        <strong>&nbsp;Adresse:</strong> {{adress}}<br>
+        <strong>&nbsp;Ville:</strong> {{city}}<br>
+    </div>
+
     <div class = "log_out" *ngIf="valeur" >
         <button class = "sumit_co1" (click)="logout()" ><strong>Logout</strong></button> 
     </div>   

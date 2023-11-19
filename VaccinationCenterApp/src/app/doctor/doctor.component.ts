@@ -1,6 +1,10 @@
 import { Component } from '@angular/core';
 import { ReservationService } from '../reservation.service';
 import { Reservation } from '../reservation';
+import { LoginService } from '../login.service';
+import { Utilisateur } from '../utilisateur';
+import { VaccinationCenter } from '../vaccination-center';
+import { VaccinationService } from '../vaccination.service';
 
 @Component({
   selector: 'app-doctor',
@@ -16,8 +20,16 @@ export class DoctorComponent {
   reservations!: Reservation[];
   selected?: Reservation;
   selectedReservId: number | null = null;
+  valeur: boolean = false;
+  username: string = "";
+  utilisateur!: Utilisateur;
+  centers!: VaccinationCenter[];
+  id!: number;
+  centre!: VaccinationCenter;
+  selectede?: VaccinationCenter;
+  selectedCenterId: number | null = null;
 
-  constructor(private service: ReservationService){}
+  constructor(private loginService: LoginService, private service: ReservationService, private service2: VaccinationService){}
 
   ngOnInit(): void {
     
@@ -34,6 +46,25 @@ export class DoctorComponent {
       this.reservations = data;
     });
     console.log("ca passe");
+  }
+
+  selectCenter(center: VaccinationCenter){
+    this.selectede=center;
+    this.selectedCenterId = center.id;
+    console.log("ID du centre sélectionné : ", this.selectedCenterId);
+    console.log("ID du centre : ", center.id);
+    
+  }
+
+  searchByVaccinCenterId(centre: VaccinationCenter){
+    this.selectede=centre;
+    this.selectedCenterId = centre.id;
+    console.log("ID du centre sélectionné : ", this.selectedCenterId);
+    console.log("ID du centre : ", centre.id);
+    this.service.getAllReservationByVaccinCenter(this.selectedCenterId).subscribe(data => {
+      this.reservations = data;
+    });
+    console.log("ca passe pour les id");
   }
 
   updateValidation(reservationID: number, updateValide: number){
@@ -53,6 +84,12 @@ export class DoctorComponent {
     console.log("ID du centre sélectionné : ", this.selectedReservId);
     console.log("ID du centre : ", reservation.id);
     
+  }
+
+  searchByCity() {
+    this.service2.getCenterByCity(this.city).subscribe(data => {
+      this.centers = data;
+    });
   }
 
 }

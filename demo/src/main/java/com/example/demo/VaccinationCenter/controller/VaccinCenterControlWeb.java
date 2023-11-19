@@ -36,6 +36,19 @@ public class VaccinCenterControlWeb {
             return centerService.findAllByCity(city);
         
         }
+
+    @GetMapping(path = "/centers/utilisateur") 
+    public VaccinationCenter getCenterByUser(String login){
+        return centerService.findByUtilisateursLogin(login);
+        
+    }
+
+    @GetMapping(path = "/centers/idd") 
+    public VaccinationCenter getCenterById(int Id){
+        return centerService.findById(Id);
+        
+    }
+    
     
     @PostMapping(path = "/centers/save" )
     public VaccinationCenter save(
@@ -61,6 +74,15 @@ public class VaccinCenterControlWeb {
                 return reservService.findAll();
             }
             return reservService.findAllByLastName(lastName);
+        
+        }
+    @GetMapping(path = "centers/reservations/vaccincenter")
+    public List<Reservation> getbyVaccinCenterId(  
+        @RequestParam(name = "Id", required = false) int Id){
+            if(Id == 0){
+                return reservService.findAll();
+            }
+            return reservService.findAllByVaccinationCenterId(Id);
         
         }
 
