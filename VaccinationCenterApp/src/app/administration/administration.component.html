@@ -99,7 +99,33 @@
 <button class = "bout_getall4" (click)="afficherCreationUser()"><strong>Créer un utilisateur</strong> </button>    
 <br>
 
-<div class = "save_center" *ngIf="valeur2" >
+<div class = "find_center" *ngIf="valeur2">
+<h2>&nbsp;<strong>Trouver un centre de vaccination </strong></h2><p>(veuillez respecter la casse (majuscule, toute lettre)</p>
+    <div class = "recherche">
+        &nbsp;&nbsp;<input type="text" [(ngModel)]="city" placeholder="Rechercher par ville" name = "search" class = "search_bar">
+        <button class = "search_cent" (click)="searchByCity()"><strong>Rechercher</strong></button>
+    </div>
+    
+    <ul>
+        <li *ngFor="let centre of centers" [ngClass]="selectedV==centre ? 'selected' : ''">
+          <strong>Nom:</strong> {{ centre.name }}<br>
+          <strong>Adresse:</strong> {{ centre.adress }}<br>
+          <strong>Ville:</strong> {{ centre.city }}<br>
+          <button class = "select_center" (click)="selectCenter(centre)"><Strong>Sélectionner</Strong></button>
+          <hr> <!-- Une ligne horizontale pour séparer chaque centre -->
+        </li>
+    </ul>
+</div>
+<br><br>
+<div *ngIf="selectedV" class = "detail">
+    <h4><strong>&nbsp;{{selectedV.name | uppercase}}</strong></h4>
+    <div class = "adress">
+        &nbsp;{{selectedV.adress | lowercase}}
+        {{selectedV.city | uppercase}}
+    </div>
+</div>
+<br><br>
+<div class = "save_center" *ngIf="selectedV" >
     <div class = "titre">
         <h3>Veuillez rentrer les informations sur l'utilisateur</h3>
     </div>
@@ -172,13 +198,14 @@
                 <label for="adm">Administrateur</label>
             </div>
         </fieldset>
-        <button (click)="cocheCases()">test coche</button>
+        <!--<button (click)="cocheCases()">test coche</button>-->
         <br>
         <button class = "bout_reserv" (click)="saveUtilisateur()"><strong>Enregistrer</strong></button>
 
     </div>
 
 </div>
+
 
 
 

@@ -1,10 +1,21 @@
 
 <h2>Bienvenue sur la page des docteurs</h2>
+<br>
+<!-- <div class = "cocoa" *ngIf="valeur" >Utilisateur2 :  {{this.username}}
+</div>
+<div class = "centre_doctor">
+    <strong>&nbsp;Nom:</strong> <br>
+    <strong>&nbsp;Adresse:</strong> <br>
+    <strong>&nbsp;Ville:</strong> <br>
+
+</div> -->
+
+
 <br><br>
         <button class = "allreserv" (click)="getAllReservation()"><strong>Voir toutes les réservations</strong></button>
 
 <div class = "find_center">
-    <h2>&nbsp;<strong>Trouver un patient </strong></h2><p>(veuillez respecter la casse (majuscule, toute lettre)</p>
+    <h2>&nbsp;<strong>Trouver un patient </strong></h2><p>(veuillez respecter la casse (majuscule, toute lettre))</p>
     <div class = "recherche">
         &nbsp;&nbsp;<input type="text" [(ngModel)]="lastName" placeholder="Rechercher par nom" name = "search" class = "search_bar">
         <button class = "search_cent" (click)="searchByName()"><strong>Rechercher</strong></button>
@@ -16,8 +27,44 @@
             <strong>Nom:</strong> {{ reservation.lastName }}<br>
             <strong>Adresse mail:</strong> {{ reservation.mail }}<br>
             <strong>Date:</strong> {{ reservation.dateRDV }}<br>
-            
+            <button class = "select_center" (click)="selectReservation(reservation)"><Strong>Sélectionner</Strong></button><br>
           <hr>  
         </li>
-    </ul>
+    </ul>  
 </div>
+
+<div *ngIf="selected" class = "detail">
+    <strong>ID: </strong> {{selected.id }} <br>
+    <strong>Prénom:</strong> {{ selected.firstName | uppercase}}<br>
+    <strong>Nom:</strong> {{ selected.lastName | uppercase}}<br>
+
+</div>
+<br>
+<button class = "bt_valid" (click)="updateValidation(selected!.id, 1)"><strong>Valider</strong></button>
+
+<!------------------------------------------------------------------------------------------------------------------------>
+<div class = "find_center">
+    
+    <h2>&nbsp;<strong>Trouver un centre de vaccination </strong></h2><p>(veuillez respecter la casse (majuscule, toute lettre) et seules Nancy et Metz sont disponibles)</p>
+    <div class = "recherche">
+        &nbsp;&nbsp;<input type="text" [(ngModel)]="city" placeholder="Rechercher par ville" name = "search" class = "search_bar">
+        <button class = "search_cent" (click)="searchByCity()"><strong>Rechercher</strong></button>
+    </div>
+    
+    <ul>
+        <li *ngFor="let centre of centers" [ngClass]="selectede==centre ? 'selectede' : ''" >
+           <strong>ID:</strong>  {{ centre.id }} <br>
+          <strong>Nom:</strong> {{ centre.name }}<br>
+          <strong>Adresse:</strong> {{ centre.adress }}<br>
+          <strong>Ville:</strong> {{ centre.city }}<br>
+          <!-- <button class = "select_center" (click)="selectCenter(centre)"><Strong>Sélectionner</Strong></button> -->
+          <button class = "voir_les_reserv" (click)="searchByVaccinCenterId(centre)"><Strong>Voir les réservations pour ce centre</Strong></button>
+    
+          <hr> <!-- Une ligne horizontale pour séparer chaque centre -->
+        </li>
+    </ul>
+        
+        <br>
+</div>
+
+<br><br>

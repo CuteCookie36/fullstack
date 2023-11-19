@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, Input } from '@angular/core';
 import { Utilisateur } from '../utilisateur';
 import { UtilisateurService } from '../utilisateur.service';
 import { Router } from '@angular/router';
@@ -33,6 +33,8 @@ export class AdministrationComponent {
   centers!: VaccinationCenter[];
   selectedV?: VaccinationCenter;
   center!: VaccinationCenter;
+  selectedCenterId: number | null = null;
+  
     
   constructor(private service: UtilisateurService, private router: Router, private service2: VaccinationService, ){}
   ngOnInit(): void {
@@ -128,6 +130,7 @@ export class AdministrationComponent {
       console.log("nom du patient : ", this.utilisateur.nom);
       console.log("mail du patient : ", this.utilisateur.email);
       console.log("role du user: " + this.utilisateur.roles);
+      console.log("id du centre de vaccin: " + this.utilisateur.vaccinationCenter.id);
       this.service.addUtilisateur(this.utilisateur).subscribe(data=>{
          console.log(data)
     }); 
@@ -144,7 +147,7 @@ export class AdministrationComponent {
       utilisateur.email &&
       utilisateur.nom &&
       utilisateur.prenom &&
-      utilisateur.roles
+      utilisateur.roles && utilisateur.vaccinationCenter.id
     ) {
       return true;
     } else {
@@ -207,6 +210,23 @@ export class AdministrationComponent {
     } else {
       return false;
     }
+  }
+
+
+  selectCenter(center: VaccinationCenter){
+    this.selectedV=center;
+    this.selectedCenterId = center.id;
+    console.log("ID du centre sélectionné : ", this.selectedCenterId);
+    console.log("ID du centre : ", center.id);
+    this.utilisateur.vaccinationCenter.id = this.selectedCenterId;
+    console.log("ID du centre dans la réservation : ", this.utilisateur.vaccinationCenter.id);
+    
+  }
+
+  searchByCity() {
+    this.service2.getCenterByCity(this.city).subscribe(data => {
+      this.centers = data;
+    });
   }
 
 }

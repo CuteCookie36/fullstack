@@ -11,4 +11,5 @@ import com.example.demo.VaccinationCenter.entity.Reservation;
 public interface ReservationRepository extends JpaRepository<Reservation, Integer> {
     
     public List<Reservation> findAllByLastNameLike(String lastName);
+    public List<Reservation> findAllByVaccinationCenterId(Number Id);
 }

@@ -8,7 +8,6 @@ import org.springframework.security.config.http.SessionCreationPolicy;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.web.SecurityFilterChain;
-
 import static org.springframework.security.config.Customizer.withDefaults;
 
 
@@ -26,9 +25,9 @@ public class SecurityConfig {
         )
                 .httpBasic(withDefaults())
                 //.addFilter(new JwtFilter())
-                //.cors(cors -> cors.disable())
+                .cors(cors -> cors.disable())
                 .csrf(csrf -> csrf.disable()) //Desactivation de la protection csrf
-                .sessionManagement(management -> management.sessionCreationPolicy(SessionCreationPolicy.STATELESS));//On rend les session stateless      
+                .sessionManagement(management -> management.sessionCreationPolicy(SessionCreationPolicy.STATELESS)); //On rend les session stateless      
         
         return http.build();
     }

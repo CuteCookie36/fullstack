@@ -14,6 +14,7 @@ import { VaccinationCenter } from "./vaccination-center";
 // dateRDV!: Date;
 
 export class Reservation {
+    id: number = 0;  
     firstName: string = '';
     lastName: string = '';
     mail: string = '';
@@ -21,5 +22,6 @@ export class Reservation {
     vaccinationCenter: {
       id: number;
     } = { id: 0 }; 
+    valid: number = 0;
   }
   

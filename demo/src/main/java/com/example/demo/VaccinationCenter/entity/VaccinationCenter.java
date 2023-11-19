@@ -64,6 +64,17 @@ public class VaccinationCenter {
     public void setReservation(List<Reservation> reservations) {
         this.reservations = reservations;
     }
+    ///////////////////////////
+    
+    @OneToMany(mappedBy = "vaccinationCenter", cascade = {})
+    private List<Utilisateur> utilisateurs;
+
+    public List<Utilisateur> getUtilisateurs() {
+        return utilisateurs;
+    }
+    public void setUtilisateurs(List<Utilisateur> utilisateurs) {
+        this.utilisateurs = utilisateurs;
+    }
 
 
 

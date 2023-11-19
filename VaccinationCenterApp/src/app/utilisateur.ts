@@ -5,4 +5,7 @@ export class Utilisateur {
     nom: string = '';
     prenom: string = '';
     roles: string = '';
+    vaccinationCenter: {
+      id: number;
+    } = { id: 0 }; 
   }
