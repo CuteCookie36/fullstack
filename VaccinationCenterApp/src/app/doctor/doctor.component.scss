@@ -8,6 +8,16 @@
     float: left;
 }
 
+.centre_doctor{
+    border: solid black 4px;
+    border-radius: 10px;
+    margin-top: 20px;
+	width: 300px;
+	margin-left: auto;
+	margin-right: auto;  
+    background-color: white;     
+}
+
 .allreserv{
     border-width: 2px;
     border-color: black;
@@ -86,6 +96,23 @@
     border-radius: 6px;
     height: 20px;
     width: 90px;
+    margin-right: auto;
+    display: flex;
+    justify-content: center;
+    color:  black;
+    cursor: pointer;
+}
+
+
+.voir_les_reserv{
+    display: block;
+    border-width: 2px;
+    border-color: black;
+    border-style: solid;
+    background-color:  rgba(225, 189, 224, 0.541);
+    border-radius: 6px;
+    height: 20px;
+    width: 250px;
     margin-right: auto;
     display: flex;
     justify-content: center;

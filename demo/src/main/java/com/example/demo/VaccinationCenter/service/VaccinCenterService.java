@@ -19,11 +19,15 @@ public class VaccinCenterService {
         return centerRepository.findById(id).get();
     }
 
-     public List<VaccinationCenter> findAll(){
+    public List<VaccinationCenter> findAll(){
         return centerRepository.findAll();
     }
     
     public VaccinationCenter SaveVaccinCenter(VaccinationCenter Center){
         return centerRepository.save(Center);
+    }
+
+    public VaccinationCenter findByUtilisateursLogin(String login){
+        return centerRepository.findByUtilisateursLogin(login);
     }
 }

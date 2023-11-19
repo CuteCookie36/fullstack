@@ -1,5 +1,5 @@
-package com.example.demo.VaccinationCenter.config;
+// package com.example.demo.VaccinationCenter.config;
 
-public @interface EnableWebSecurity {
+// public @interface EnableWebSecurity {
 
-}
+// }

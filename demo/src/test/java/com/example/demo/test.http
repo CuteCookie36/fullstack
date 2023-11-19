@@ -1,5 +1,11 @@
-GET http://localhost:8080/api/public/centers?city=M%
+//GET http://localhost:8080/api/public/centers?city=M%
 
 //GET http://localhost:4200/api/public/centers?city=M%
 //Accept: text/html
 //le % permet de sélectionner tout qui commence par un N, si on l'avait mis avant on aurait villers les nancy par ex
+
+
+//GET http://localhost:8080/api/public/centers/utilisateur?login=myrtille2
+
+GET http://localhost:8080/api/public/centers/idd?Id=1
+

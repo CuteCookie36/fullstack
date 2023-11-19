@@ -126,3 +126,73 @@ h3{
 .erreur {
     color:rgb(165, 12, 12);
 }
+
+
+.find_center{
+    border: solid black 4px;
+    border-radius: 10px;
+    margin-top: 100px;
+	width: 600px;
+	margin-left: auto;
+	margin-right: auto;  
+    background-color: white;     
+}
+
+.search_cent{
+    display: block;
+    border-width: 2px;
+    border-color: black;
+    border-style: solid;
+    background-color:  rgba(225, 189, 224, 0.541);
+    border-radius: 6px;
+    height: 20px;
+    width: 90px;
+    margin-right: 10px;
+    flex: 1;
+    justify-content: center;
+    color:  black;
+    cursor: pointer;
+}
+
+.search_bar{
+    margin-right: 5px;
+    border-radius: 6px;
+    flex: 3;
+}
+
+.recherche{
+    display: flex;
+}
+
+.selected button{
+    background-color: rgb(252, 142, 252);
+    cursor: pointer;
+}
+
+.select_center{
+    display: block;
+    border-width: 2px;
+    border-color: black;
+    border-style: solid;
+    background-color:  rgba(225, 189, 224, 0.541);
+    border-radius: 6px;
+    height: 20px;
+    width: 90px;
+    margin-right: auto;
+    display: flex;
+    justify-content: center;
+    color:  black;
+    cursor: pointer;
+}
+
+.detail{
+
+    background-color: rgb(252, 142, 252);
+    border: solid black 4px;
+    height: 60px;
+    width: 300px;
+    margin-left: auto;
+    margin-right: auto;
+    justify-content: center;
+    border-radius: 10px;
+}

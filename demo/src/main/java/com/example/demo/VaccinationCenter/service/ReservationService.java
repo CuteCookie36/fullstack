@@ -49,5 +49,8 @@ public class ReservationService {
         }
     }
     
+    public List<Reservation> findAllByVaccinationCenterId(int ID){
+        return reservRepository.findAllByVaccinationCenterId(ID);
+    }
 
 }

@@ -1,0 +1,17 @@
+# POST http://localhost:8080/api/admin/utilisateurs
+# Content-Type: application/json
+
+# {
+#     "login" : "myrtille2",
+#     "password": "peach2", 
+#     "nom": "tacos5",  
+#     "prenom" : "natcho5",
+#     "email": "ho@coudal.comm",
+#     "roles": "med",
+#     "vaccinationCenter": {
+#         "id" : 1
+#     }
+
+# }
+
+GET http://localhost:8080/api/public/centers/reservations/vaccincenter?Id=7
