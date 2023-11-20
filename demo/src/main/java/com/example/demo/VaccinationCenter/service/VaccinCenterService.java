@@ -1,5 +1,7 @@
 package com.example.demo.VaccinationCenter.service;
 import java.util.List;
+import java.util.Optional;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -30,4 +32,29 @@ public class VaccinCenterService {
     public VaccinationCenter findByUtilisateursLogin(String login){
         return centerRepository.findByUtilisateursLogin(login);
     }
+
+    public void deleteCenterById(Integer id) {
+        java.util.Optional<VaccinationCenter> center = centerRepository.findById(id);
+
+        if(center.isPresent()) centerRepository.deleteById(id);
+        else System.out.println("le centre est pas présent");
+    }
+
+    public VaccinationCenter updateCenter(int id, VaccinationCenter updatedCenter){
+
+        Optional<VaccinationCenter> center1 = centerRepository.findById(id);
+        
+        if (center1.isPresent()){
+            updatedCenter.setId(center1.get().getId());
+            return centerRepository.save(updatedCenter);
+        }
+        else {
+            System.out.println("le center est pas présent");
+            return null;
+        } 
+        
+
+    }
+
+
 }
