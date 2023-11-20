@@ -44,6 +44,9 @@ export class VaccinationService {
     return this.http.post("api/public/centers/save", body,{'headers':headers})
   }
 
+  deleteCenter(id: Number): Observable<VaccinationCenter> {
+    return this.http.delete<VaccinationCenter>("/api/public/centers/delete/"+id)
+  }
 
 
 }

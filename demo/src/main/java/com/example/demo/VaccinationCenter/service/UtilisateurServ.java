@@ -61,5 +61,12 @@ public class UtilisateurServ implements UserDetailsService {
         return true;
     }
 
+    public void deleteUserById(Integer id) {
+        java.util.Optional<Utilisateur> user = userRepo.findById(id);
+
+        if(user.isPresent()) userRepo.deleteById(id);
+        else System.out.println("le user est pas présent");
+    }
+
     
 }

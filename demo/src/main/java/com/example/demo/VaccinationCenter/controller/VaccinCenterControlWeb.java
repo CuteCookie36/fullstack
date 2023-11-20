@@ -5,7 +5,9 @@ import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -97,6 +99,11 @@ public class VaccinCenterControlWeb {
         reservService.updateValidForReservation(reservationId, newValidValue);
         // Réponse
         return ResponseEntity.ok("La valeur de valid pour la réservation " + reservationId + " a été mise à jour.");
+    }
+
+    @DeleteMapping("centers/delete/{id}")
+    public void deleteCenter(@PathVariable("id") int id) {
+        centerService.deleteCenterById(id);
     }
 
     }

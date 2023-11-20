@@ -11,5 +11,6 @@ public interface VaccinCenterRepo extends JpaRepository<VaccinationCenter, Integ
 
    public List<VaccinationCenter> findAllByCityLike(String city); //on créé findallbycitylike qui va correspondre à requete sql
    public VaccinationCenter findByUtilisateursLogin(String login);
+   
 }
 

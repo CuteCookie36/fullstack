@@ -30,4 +30,11 @@ public class VaccinCenterService {
     public VaccinationCenter findByUtilisateursLogin(String login){
         return centerRepository.findByUtilisateursLogin(login);
     }
+
+    public void deleteCenterById(Integer id) {
+        java.util.Optional<VaccinationCenter> center = centerRepository.findById(id);
+
+        if(center.isPresent()) centerRepository.deleteById(id);
+        else System.out.println("le centre est pas présent");
+    }
 }

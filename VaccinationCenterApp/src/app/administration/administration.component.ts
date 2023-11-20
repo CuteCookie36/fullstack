@@ -33,7 +33,9 @@ export class AdministrationComponent {
   centers!: VaccinationCenter[];
   selectedV?: VaccinationCenter;
   center!: VaccinationCenter;
+  user!: Utilisateur;
   selectedCenterId: number | null = null;
+  selectedUserId: number | null = null;
   
     
   constructor(private service: UtilisateurService, private router: Router, private service2: VaccinationService, ){}
@@ -97,6 +99,31 @@ export class AdministrationComponent {
       console.log("bravo ! !");
     }
   }
+
+  delete(centre: VaccinationCenter){
+    this.selectedV=centre;
+    this.selectedCenterId = centre.id;
+    console.log("ID du centre sélectionné : ", this.selectedCenterId);
+    console.log("ID du centre : ", centre.id);
+    this.service2.deleteCenter(this.selectedCenterId).subscribe(data => {
+      this.center = data;
+    });
+    this.valeur3 = false;
+    console.log("ca passe pour les id");
+  }
+
+  deleteU(User: Utilisateur){
+    this.selected=User;
+    this.selectedUserId = User.id;
+    console.log("ID du user : ", User.id);
+    this.service.deleteUser(this.selectedUserId).subscribe(data => {
+      this.user = data;
+    });
+    this.valeur4 = false;
+    console.log("ca passe pour les id");
+  }
+  
+
   onFirstNameChange2() {
     if (this.utilisateur.login) {
       // Si le champ est rempli, changez la couleur de la bordure

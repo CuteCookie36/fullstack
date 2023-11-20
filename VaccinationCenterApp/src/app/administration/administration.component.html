@@ -15,6 +15,7 @@
             <strong>Nom:</strong> {{ utilisateur.nom }}<br>
             <strong>Prénom:</strong> {{ utilisateur.prenom }}<br>
             <strong>Role:</strong> {{utilisateur.roles }}<br>
+            <button class = "select_center" (click)="deleteU(utilisateur)"><strong>Supprimer</strong></button>
             <hr> 
         </li>
     </ul>
@@ -31,7 +32,7 @@
           <strong>Nom:</strong> {{ centre.name }}<br>
           <strong>Adresse:</strong> {{ centre.adress }}<br>
           <strong>Ville:</strong> {{ centre.city }}<br>
-          
+          <button class = "select_center" (click)="delete(centre)"><strong>Supprimer</strong></button>
           <hr> <!-- Une ligne horizontale pour séparer chaque centre -->
         </li>
     </ul>
