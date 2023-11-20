@@ -54,11 +54,37 @@
 
     <ul>
         <li *ngFor="let centre of centers" [ngClass]="selectedV==centre ? 'selected' : ''">
+          <ng-container *ngIf="!isEditing || selectedV != centre">
           <strong>Nom:</strong> {{ centre.name }}<br>
           <strong>Adresse:</strong> {{ centre.adress }}<br>
           <strong>Ville:</strong> {{ centre.city }}<br>
-          <button class = "select_center" (click)="delete(centre)"><strong>Supprimer</strong></button>
-          <hr> <!-- Une ligne horizontale pour séparer chaque centre -->
+          </ng-container>
+
+          <ng-container *ngIf="isEditing && selectedV == centre">
+            <!-- Afficher les champs de formulaire pour la modification -->
+            <form [formGroup]="centerForm">
+              <label for="editNom">Nom: </label>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+              <input id="editNom" type="text" formControlName="editNom"><br>
+              <label for="editAdress">Adresse:</label>&nbsp;&nbsp;
+              <input id="editAdress" type="text" formControlName="editAdress"><br>
+              <label for="editVille">Ville:    </label>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+              <input id="editVille" type="text" formControlName="editVille"><br>
+      
+              <!-- Ajoutez d'autres champs pour la modification -->
+                <br>
+              <button class="select_center2" (click)="saveChanges2(selectedV)"><strong>Enregistrer</strong></button>
+            </form>
+            <br>
+          </ng-container>
+        
+        <!-- <div *ngIf="!isEditing">
+            <button class = "select_center" (click)="delete(centre)"><strong>Supprimer</strong></button><br>
+        </div> -->
+        
+        <button class="select_center2" (click)="toggleEditing2(centre)"><strong>{{ isEditing && selectedV == centre ? 'Annuler' : 'Modifier' }}</strong></button><br>
+        
+        
+        <hr> <!-- Une ligne horizontale pour séparer chaque centre -->
         </li>
     </ul>
 </div>

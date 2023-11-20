@@ -32,24 +32,32 @@ export class AdministrationComponent {
   borderColor: string = 'rgb(237, 13, 13)';
   selected: Utilisateur | undefined;
   centers!: VaccinationCenter[];
-  selectedV?: VaccinationCenter;
+  selectedV: VaccinationCenter | undefined;
   center!: VaccinationCenter;
   user!: Utilisateur;
   selectedCenterId: number | null = null;
   selectedUserId: number | null = null;
   @Input() UserS!: Utilisateur;
+  @Input() CenterV!: VaccinationCenter;
   @Output() patchSuccess: EventEmitter<boolean> = new EventEmitter<boolean>();
-  patchErrorMessage: string = 'Il y a eu une erreur lors de la modification du user';
+  patchErrorMessage: string = 'Il y a eu une erreur lors de la modification';
   showErrorMessage: boolean = false;
   userForm!: FormGroup;
+  centerForm!: FormGroup;
   isEditing: boolean = false;
     
-  constructor(private service: UtilisateurService, private router: Router, private service2: VaccinationService, private fb: FormBuilder ){
+  constructor(private service: UtilisateurService, private router: Router, private service2: VaccinationService, private fb: FormBuilder, private fb2: FormBuilder ){
     this.userForm = this.fb.group({
       editEmail: [''],
       editNom: [''],
       editPrenom: [''],
       editLogin: [''],
+    } );
+
+    this.centerForm = this.fb2.group({
+      editNom: [''],
+      editAdress: [''],
+      editVille: [''],
     } );
   }
   ngOnInit(): void {
@@ -152,6 +160,21 @@ export class AdministrationComponent {
     } 
   }
 
+  toggleEditing2(center: VaccinationCenter) {
+    this.isEditing = !this.isEditing;
+    if(this.isEditing){
+      this.selectedV = center;
+      //console.log("center ville: " + this.selectedV.city);
+    this.centerForm.setValue({
+      editNom: center.name,
+      editAdress: center.adress,
+      editVille: center.city,
+    });
+    }else{
+      this.selectedV = undefined;
+    } 
+  }
+
   saveChanges(User: Utilisateur) {
     this.selected = User;
     this.selected.email = this.userForm.get('editEmail')?.value;
@@ -169,6 +192,27 @@ export class AdministrationComponent {
         this.showErrorMessage = false;
         this.patchSuccess.emit(true);
         this.toggleEditing(this.UserS); // Désactivez le mode édition après l'enregistrement
+      },
+      error: (error) => {
+        this.showErrorMessage = true;
+      }
+    });
+  }
+
+  saveChanges2(Center: VaccinationCenter) {
+    this.selectedV = Center;
+    this.selectedV.adress = this.centerForm.get('editAdress')?.value;
+    this.selectedV.city = this.centerForm.get('editVille')?.value;
+    this.selectedV.name = this.centerForm.get('editNom')?.value;
+    console.log("nom: " + this.selectedV.name);
+    console.log("ville: " + this.selectedV.city);
+    console.log("adresse: " + this.selectedV.adress);
+    console.log("id du centre: " + this.selectedV.id);
+    this.service2.patchCenter(this.selectedV).subscribe({
+      next: (response) => {
+        this.showErrorMessage = false;
+        this.patchSuccess.emit(true);
+        this.toggleEditing2(this.CenterV); // Désactivez le mode édition après l'enregistrement
       },
       error: (error) => {
         this.showErrorMessage = true;
