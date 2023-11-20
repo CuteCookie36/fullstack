@@ -10,12 +10,37 @@
 
     <ul>
         <li *ngFor="let utilisateur of utilisateurs" [ngClass]="selected==utilisateur ? 'selected' : ''">
-            <strong>Login:</strong> {{ utilisateur.login }}<br>
-            <strong>Email:</strong> {{ utilisateur.email }}<br>
-            <strong>Nom:</strong> {{ utilisateur.nom }}<br>
-            <strong>Prénom:</strong> {{ utilisateur.prenom }}<br>
-            <strong>Role:</strong> {{utilisateur.roles }}<br>
-            <button class = "select_center" (click)="deleteU(utilisateur)"><strong>Supprimer</strong></button>
+            <ng-container *ngIf="!isEditing || selected != utilisateur">
+                <strong>Login:</strong> {{ utilisateur.login }}<br>
+                <strong>Email:</strong> {{ utilisateur.email }}<br>
+                <strong>Nom:</strong> {{ utilisateur.nom }}<br>
+                <strong>Prénom:</strong> {{ utilisateur.prenom }}<br>
+                <strong>Role:</strong> {{utilisateur.roles }}<br>
+            </ng-container>
+
+            <ng-container *ngIf="isEditing && selected == utilisateur">
+                <!-- Afficher les champs de formulaire pour la modification -->
+                <form [formGroup]="userForm">
+                  <label for="editLogin">Login:</label>&nbsp;&nbsp;&nbsp;&nbsp;
+                  <input id="editLogin" type="text" formControlName="editLogin"><br>
+                  <label for="editEmail">Email:</label>&nbsp;&nbsp;&nbsp;&nbsp;
+                  <input id="editEmail" type="text" formControlName="editEmail"><br>
+                  <label for="editNom">Nom:  </label>&nbsp;&nbsp;&nbsp;&nbsp;
+                  <input id="editNom" type="text" formControlName="editNom"><br>
+                  <label for="editPrenom">Prénom:</label>&nbsp;
+                  <input id="editPrenom" type="text" formControlName="editPrenom"><br>
+          
+                  <!-- Ajoutez d'autres champs pour la modification -->
+                    <br>
+                  <button class="select_center2" (click)="saveChanges(selected)"><strong>Enregistrer</strong></button>
+                </form>
+                <br>
+              </ng-container>
+            <div *ngIf="!isEditing">
+                <button class = "select_center" (click)="deleteU(utilisateur)"><strong>Supprimer</strong></button><br>
+            </div>
+            
+            <button class="select_center2" (click)="toggleEditing(utilisateur)"><strong>{{ isEditing && selected == utilisateur ? 'Annuler' : 'Modifier' }}</strong></button><br>
             <hr> 
         </li>
     </ul>

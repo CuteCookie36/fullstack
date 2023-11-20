@@ -1,9 +1,10 @@
-import { Component, Input } from '@angular/core';
+import { Component, EventEmitter, Input, Output } from '@angular/core';
 import { Utilisateur } from '../utilisateur';
 import { UtilisateurService } from '../utilisateur.service';
 import { Router } from '@angular/router';
 import { VaccinationCenter } from '../vaccination-center';
 import { VaccinationService } from '../vaccination.service';
+import { FormBuilder, FormGroup } from '@angular/forms';
 
 @Component({
   selector: 'app-administration',
@@ -29,16 +30,28 @@ export class AdministrationComponent {
   utilisateur: Utilisateur = new Utilisateur();
   centree: VaccinationCenter = new VaccinationCenter();
   borderColor: string = 'rgb(237, 13, 13)';
-  selected?: Utilisateur;
+  selected: Utilisateur | undefined;
   centers!: VaccinationCenter[];
   selectedV?: VaccinationCenter;
   center!: VaccinationCenter;
   user!: Utilisateur;
   selectedCenterId: number | null = null;
   selectedUserId: number | null = null;
-  
+  @Input() UserS!: Utilisateur;
+  @Output() patchSuccess: EventEmitter<boolean> = new EventEmitter<boolean>();
+  patchErrorMessage: string = 'Il y a eu une erreur lors de la modification du user';
+  showErrorMessage: boolean = false;
+  userForm!: FormGroup;
+  isEditing: boolean = false;
     
-  constructor(private service: UtilisateurService, private router: Router, private service2: VaccinationService, ){}
+  constructor(private service: UtilisateurService, private router: Router, private service2: VaccinationService, private fb: FormBuilder ){
+    this.userForm = this.fb.group({
+      editEmail: [''],
+      editNom: [''],
+      editPrenom: [''],
+      editLogin: [''],
+    } );
+  }
   ngOnInit(): void {
 
   }
@@ -123,6 +136,45 @@ export class AdministrationComponent {
     console.log("ca passe pour les id");
   }
   
+  toggleEditing(user: Utilisateur) {
+    this.isEditing = !this.isEditing;
+    if(this.isEditing){
+      this.selected = user;
+  
+    this.userForm.setValue({
+      editLogin: user.login,
+      editEmail: user.email,
+      editNom: user.nom,
+      editPrenom: user.prenom,
+    });
+    }else{
+      this.selected = undefined;
+    } 
+  }
+
+  saveChanges(User: Utilisateur) {
+    this.selected = User;
+    this.selected.email = this.userForm.get('editEmail')?.value;
+    this.selected.nom = this.userForm.get('editNom')?.value;
+    this.selected.prenom = this.userForm.get('editPrenom')?.value;
+    this.selected.login = this.userForm.get('editLogin')?.value;
+    console.log("nom: " + this.selected.nom);
+    console.log("prenom: " + this.selected.prenom);
+    console.log("email: " + this.selected.email);
+    console.log("login: " + this.selected.login);
+    console.log("role: " + this.selected.roles);
+    console.log("id du user: " + this.selected.id);
+    this.service.patchUser(this.selected).subscribe({
+      next: (response) => {
+        this.showErrorMessage = false;
+        this.patchSuccess.emit(true);
+        this.toggleEditing(this.UserS); // Désactivez le mode édition après l'enregistrement
+      },
+      error: (error) => {
+        this.showErrorMessage = true;
+      }
+    });
+  }
 
   onFirstNameChange2() {
     if (this.utilisateur.login) {

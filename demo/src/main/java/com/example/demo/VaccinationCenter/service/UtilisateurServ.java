@@ -68,5 +68,21 @@ public class UtilisateurServ implements UserDetailsService {
         else System.out.println("le user est pas présent");
     }
 
+    public Utilisateur updateUser(int id, Utilisateur updatedUser){
+
+        Optional<Utilisateur> user1 = userRepo.findById(id);
+        
+        if (user1.isPresent()){
+            updatedUser.setId(user1.get().getId());
+            return userRepo.save(updatedUser);
+        }
+        else {
+            System.out.println("le user est pas présent");
+            return null;
+        } 
+        
+
+    }
+
     
 }
