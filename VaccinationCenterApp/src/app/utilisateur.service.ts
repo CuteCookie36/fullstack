@@ -22,5 +22,14 @@ export class UtilisateurService {
     return this.http.post("api/admin/utilisateurs", body,{'headers':headers})
   }
 
+  deleteUser(id: Number): Observable<Utilisateur>{
+    return this.http.delete<Utilisateur>("/api/admin/utilisateur/delete/"+id)
+  }
+
+  patchUser(user: Utilisateur): Observable<Utilisateur> {
+    console.log("id du user: " + user.id);
+    return this.http.patch<Utilisateur>("/api/admin/utilisateur/patch/"+user.id, user)
+  }
+
 
 }

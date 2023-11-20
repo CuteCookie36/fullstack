@@ -164,12 +164,24 @@ h3{
     display: flex;
 }
 
-.selected button{
-    background-color: rgb(252, 142, 252);
+
+.select_center{
+    display: block;
+    border-width: 2px;
+    border-color: black;
+    border-style: solid;
+    background-color:  rgba(225, 189, 224, 0.541);
+    border-radius: 6px;
+    height: 20px;
+    width: 90px;
+    margin-right: auto;
+    display: flex;
+    justify-content: center;
+    color:  black;
     cursor: pointer;
 }
 
-.select_center{
+.select_center2{
     display: block;
     border-width: 2px;
     border-color: black;

@@ -2,6 +2,7 @@ package com.example.demo.VaccinationCenter.entity;
 
 import java.util.List;
 
+import jakarta.persistence.CascadeType;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
@@ -55,7 +56,7 @@ public class VaccinationCenter {
     }
     ///////////////////////////
     
-    @OneToMany(mappedBy = "vaccinationCenter", cascade = {})
+    @OneToMany(mappedBy = "vaccinationCenter", cascade = CascadeType.REMOVE)
     private List<Reservation> reservations;
 
     public List<Reservation> getReservation() {
@@ -66,7 +67,7 @@ public class VaccinationCenter {
     }
     ///////////////////////////
     
-    @OneToMany(mappedBy = "vaccinationCenter", cascade = {})
+    @OneToMany(mappedBy = "vaccinationCenter", cascade = CascadeType.REMOVE)
     private List<Utilisateur> utilisateurs;
 
     public List<Utilisateur> getUtilisateurs() {

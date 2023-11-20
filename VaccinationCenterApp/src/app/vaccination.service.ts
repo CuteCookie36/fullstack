@@ -44,6 +44,13 @@ export class VaccinationService {
     return this.http.post("api/public/centers/save", body,{'headers':headers})
   }
 
+  deleteCenter(id: Number): Observable<VaccinationCenter> {
+    return this.http.delete<VaccinationCenter>("/api/public/centers/delete/"+id)
+  }
 
+  patchCenter(centre: VaccinationCenter): Observable<VaccinationCenter> {
+    console.log("id du centre: " + centre.id);
+    return this.http.patch<VaccinationCenter>("/api/public/centers/patch/"+centre.id, centre)
+  }
 
 }
