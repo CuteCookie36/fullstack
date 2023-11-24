@@ -1,7 +1,7 @@
-POST http://localhost:8080/api/public/centers/reservation/update-valid
+POST http://localhost:8080/api/private/centers/reservation/update-valid
 Content-Type: application/json
 
 {
-    "reservationId": 29, 
+    "reservationId": 26, 
     "newValidValue": 0 
 }

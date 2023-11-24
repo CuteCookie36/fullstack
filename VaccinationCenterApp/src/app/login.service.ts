@@ -33,19 +33,20 @@ export class LoginService {
     //console.log("password2 = " + password);
     // //console.log("token = " + token);
 
-    return this.httpClient.get<Utilisateur>('/api/public/utilisateur?login=' + username)
+    return this.httpClient.get<Utilisateur>('/api/public/utilisateur?login=' + username + "&password=" + password)
     .pipe(map((user: Utilisateur) => {
       this.password = password;
       this.username = username;
-      this.isLoggedSubject.next(true);
       this.connectedUser = user;
       this.role = this.connectedUser.roles;
       this.VaccinCenterId = this.connectedUser.vaccinationCenter.id;
-      //console.log("connected user role: " + this.connectedUser.roles)
-      //console.log("id vaccinC: " + this.connectedUser.vaccinationCenter.id)
-      //console.log("id VaccinC 2: " + this.VaccinCenterId)
-      //console.log("le roles est: " + this.role);
-      //console.log("Connected")
+      this.isLoggedSubject.next(true);
+      console.log("connected user role: " + this.connectedUser.roles)
+      console.log("username: " + this.username)
+      console.log("password: " + this.password)
+      console.log("id VaccinC 2: " + this.VaccinCenterId)
+      console.log("le roles est: " + this.role);
+      console.log("Connected")
       return user;
     }))
 

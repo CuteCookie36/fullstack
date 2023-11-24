@@ -11,7 +11,8 @@ import com.example.demo.VaccinationCenter.entity.Utilisateur;
 @Repository
 public interface UtilisateurRepo extends JpaRepository<Utilisateur, Integer> {
     
-    public Optional<Utilisateur> findByLogin(String login);
+    public Optional<Utilisateur> findByLoginAndPassword(String login, String password);
     public List<Utilisateur> findAllByLogin(String login);
+    public Optional<Utilisateur> findByLogin(String login);
     public List<Utilisateur> findAllByRolesLike(String roles);
 }

@@ -9,6 +9,7 @@ import org.springframework.security.core.userdetails.User;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import com.example.demo.VaccinationCenter.entity.Utilisateur;
@@ -19,12 +20,24 @@ public class UtilisateurServ implements UserDetailsService {
     
     @Autowired
     private UtilisateurRepo userRepo;
+    @Autowired
+    private PasswordEncoder passwordEncoder;
+
     private static org.slf4j.Logger log = LoggerFactory.getLogger(UtilisateurServ.class);
 
     public Utilisateur SaveUtilisateur(Utilisateur user){
+
         System.out.println("affichage erreur" + user.getId());
+        Utilisateur user1 = new Utilisateur();
+        user1.setEmail(user.getEmail());
+        user1.setLogin(user.getLogin());
+        user1.setNom(user.getNom());
+        user1.setPrenom(user.getPrenom());
+        user1.setPassword(passwordEncoder.encode(user.getPassword()));
+        user1.setRoles(user.getRoles());
+        user1.setVaccinationCenter(user.getVaccinationCenter());
         
-        return userRepo.save(user);
+        return userRepo.save(user1);
     }
 
     public List<Utilisateur> findAll(){
@@ -43,6 +56,21 @@ public class UtilisateurServ implements UserDetailsService {
             throw new UsernameNotFoundException("L'utilisateur" + login + " n'existe pas");
         }
 
+    }
+
+    public Optional<Utilisateur> findByLoginAndPassword(String login, String password){
+        
+        Optional<Utilisateur> user1 = userRepo.findByLogin(login);
+    
+        if (user1.isPresent()) {
+            Utilisateur utilisateur = user1.get();
+        
+            if (passwordEncoder.matches(password, utilisateur.getPassword())) {
+                return user1;
+            }
+        }
+    
+        return Optional.empty();
     }
 
     public Optional<Utilisateur> findByLogin(String login){

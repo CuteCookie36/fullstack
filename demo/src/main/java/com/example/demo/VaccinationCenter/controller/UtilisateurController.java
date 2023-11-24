@@ -24,14 +24,14 @@ public class UtilisateurController {
     @Autowired
     private UtilisateurServ userService;
 
-     @PostMapping(path = "/admin/utilisateurs" )
+     @PostMapping(path = "/private/utilisateurs" )
     public Utilisateur saveUser(
         @RequestBody Utilisateur User  ){
             return userService.SaveUtilisateur(User);
         } 
 
 
-    @GetMapping(path = "/admin/utilisateurs/")
+    @GetMapping(path = "/private/utilisateurs/")
     public List<Utilisateur> getUser( ){
         return userService.findAll();
     }
@@ -43,10 +43,12 @@ public class UtilisateurController {
     }
 
     @GetMapping("/public/utilisateur")
-    public java.util.Optional<Utilisateur> getUtilisateur(String login) {
-        return userService.findByLogin(login);
+    public java.util.Optional<Utilisateur> getUtilisateur(String login, String password) {
+        return userService.findByLoginAndPassword(login, password);
     }
-    @GetMapping("/public/utilisateurs")
+
+
+    @GetMapping("/private/utilisateurs")
     public List<Utilisateur> getUser( 
         @RequestParam(name = "roles", required = false) String roles){
             if(roles == null){
@@ -56,22 +58,22 @@ public class UtilisateurController {
         
         } 
 
-    @GetMapping("/public/utilisateur/")
+    @GetMapping("/private/utilisateur/")
     public List<Utilisateur> getAllUtilisateur() {
         return userService.findAll();
     } 
 
-    @GetMapping("/utilisateur")
+    @GetMapping("private/utilisateur")
     public java.util.Optional<Utilisateur> getUtilisateur_f(String login) {
         return userService.findByLogin(login);
     }
      
-    @DeleteMapping("/admin/utilisateur/delete/{id}")
+    @DeleteMapping("/private/utilisateur/delete/{id}")
     public void deleteCenter(@PathVariable("id") int id) {
         userService.deleteUserById(id);
     }
         
-    @PatchMapping("/admin/utilisateur/patch/{id}")
+    @PatchMapping("/private/utilisateur/patch/{id}")
     public Utilisateur updateUser(@PathVariable("id") int id , @RequestBody Utilisateur updatedUser) {
         return userService.updateUser(id, updatedUser);
     }

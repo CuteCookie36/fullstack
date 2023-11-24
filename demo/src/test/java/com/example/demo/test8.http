@@ -6,4 +6,4 @@
 //GET http://localhost:8080/api/public/utilisateur/
 
 
-GET http://localhost:8080/api/public/utilisateurs?roles=med
+GET http://localhost:8080/api/private/utilisateurs?roles=med
