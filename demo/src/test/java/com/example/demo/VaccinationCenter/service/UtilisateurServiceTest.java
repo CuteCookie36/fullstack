@@ -28,7 +28,8 @@ public class UtilisateurServiceTest {
         this.utilisateurService.SaveUtilisateur(User1);
 
         var resultat = utilisateurService.validationUtilisateur("choucroute", "frite", "lasagne", "tiramisu", "nuggets@salut.com", "med" );
+        System.out.println("resultat: " + resultat);
         Assertions.assertThat(resultat).isTrue();
-        Assertions.assertThat(this.utilisateurRepository.findByLogin("choucroute").get().getPrenom()).isEqualTo("tiramisu");
+        Assertions.assertThat(this.utilisateurRepository.findByEmail("nuggets@salut.com").getPrenom()).isEqualTo("tiramisu");
     }
 }
