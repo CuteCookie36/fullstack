@@ -1,12 +1,12 @@
-POST http://localhost:8080/api/admin/utilisateurs
-Content-Type: application/json
+# POST http://localhost:8080/api/private/utilisateurs
+# Content-Type: application/json
 
-{
-    "login" : "myrtille",
-    "password": "peach", 
-    "nom": "tacos3",  
-    "prenom" : "natcho3",
-    "email": "ho@cou.comm",
-    "roles": "med"
+# {
+#     "login" : "crumble",
+#     "password": "tartare", 
+#     "nom": "tartetatin",  
+#     "prenom" : "croissant",
+#     "email": "hahaha@hey.comm",
+#     "roles": "med"
 
-}
+# }

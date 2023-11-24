@@ -22,7 +22,7 @@ import com.example.demo.VaccinationCenter.service.VaccinCenterService;
 
 
 @RestController
-@RequestMapping(value = "/api/public")
+@RequestMapping(value = "/api")
 public class VaccinCenterControlWeb {
     
     @Autowired
@@ -30,7 +30,7 @@ public class VaccinCenterControlWeb {
     @Autowired
     private ReservationService reservService;
 
-    @GetMapping(path = "/centers") //on aurait pu écrire PostMapping si on faisait une requete Post
+    @GetMapping(path = "/public/centers") //on aurait pu écrire PostMapping si on faisait une requete Post
     public List<VaccinationCenter> get( //on a mis get mais on aurait pu mettre n'importe quoi 
         @RequestParam(name = "city", required = false) String city){
             if(city == null){
@@ -40,37 +40,37 @@ public class VaccinCenterControlWeb {
         
         }
 
-    @GetMapping(path = "/centers/utilisateur") 
+    @GetMapping(path = "/private/centers/utilisateur") 
     public VaccinationCenter getCenterByUser(String login){
         return centerService.findByUtilisateursLogin(login);
         
     }
 
-    @GetMapping(path = "/centers/idd") 
+    @GetMapping(path = "/private/centers/idd") 
     public VaccinationCenter getCenterById(int Id){
         return centerService.findById(Id);
         
     }
     
     
-    @PostMapping(path = "/centers/save" )
+    @PostMapping(path = "/private/centers/save" )
     public VaccinationCenter save(
         @RequestBody VaccinationCenter Center  ){
             return centerService.SaveVaccinCenter(Center);
         } 
 
-    @PostMapping(path = "/centers/reservation" )
+    @PostMapping(path = "/public/centers/reservation" )
     public Reservation saveReservation(
         @RequestBody Reservation reserv  ){
             return reservService.SaveReservation(reserv);
         }
         
-    @GetMapping(path = "/centers/reservation/")
+    @GetMapping(path = "/private/centers/reservation/")
     public List<Reservation> getReservation( ){
         return reservService.findAll();
     }
 
-    @GetMapping(path = "centers/reservations")
+    @GetMapping(path = "/private/centers/reservations")
     public List<Reservation> getbyName(  
         @RequestParam(name = "lastName", required = false) String lastName){
             if(lastName == null){
@@ -79,7 +79,7 @@ public class VaccinCenterControlWeb {
             return reservService.findAllByLastName(lastName);
         
         }
-    @GetMapping(path = "centers/reservations/vaccincenter")
+    @GetMapping(path = "/private/centers/reservations/vaccincenter")
     public List<Reservation> getbyVaccinCenterId(  
         @RequestParam(name = "Id", required = false) int Id){
             if(Id == 0){
@@ -89,7 +89,7 @@ public class VaccinCenterControlWeb {
         
         }
 
-    @PostMapping("centers/reservation/update-valid")
+    @PostMapping("/private/centers/reservation/update-valid")
     public ResponseEntity<String> updateValidForReservation(@RequestBody Map<String, Object> updateRequest) {
         int reservationId = Integer.parseInt(updateRequest.get("reservationId").toString());
         int newValidValue = (int) updateRequest.get("newValidValue");
@@ -102,12 +102,12 @@ public class VaccinCenterControlWeb {
         return ResponseEntity.ok("La valeur de valid pour la réservation " + reservationId + " a été mise à jour.");
     }
 
-    @DeleteMapping("centers/delete/{id}")
+    @DeleteMapping("/private/centers/delete/{id}")
     public void deleteCenter(@PathVariable("id") int id) {
         centerService.deleteCenterById(id);
     }
 
-    @PatchMapping("/centers/patch/{id}")
+    @PatchMapping("/private/centers/patch/{id}")
     public VaccinationCenter updateCenter(@PathVariable("id") int id , @RequestBody VaccinationCenter updatedCenter) {
         return centerService.updateCenter(id, updatedCenter);
     }

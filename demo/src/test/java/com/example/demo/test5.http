@@ -1,1 +1,1 @@
-GET http://localhost:8080/api/public/centers/reservation/
+GET http://localhost:8080/api/private/centers/reservation/
