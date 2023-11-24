@@ -7,5 +7,7 @@
 
 //GET http://localhost:8080/api/public/centers/utilisateur?login=myrtille2
 
-GET http://localhost:8080/api/public/centers/idd?Id=3
+//GET http://localhost:8080/api/public/centers/idd?Id=3
+
+GET http://localhost:8080/api/public/utilisateur?login=test11&password=test22
 

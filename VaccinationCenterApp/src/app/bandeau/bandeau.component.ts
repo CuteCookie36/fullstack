@@ -41,7 +41,7 @@ export class BandeauComponent implements OnInit{
         });
 
         //this.VaccinCenter = this.loginService.getCurrentVaccinationCenter()
-        //console.log("city du vaciinc: " + this.VaccinCenter.city)
+        console.log("city du vaciinc: " + this.city)
         this.valeur = true;
         //console.log("valeur de valeur ap: " + this.valeur);
         //this.utilisateur.login = this.username;

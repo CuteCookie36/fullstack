@@ -43,9 +43,11 @@ public class UtilisateurController {
     }
 
     @GetMapping("/public/utilisateur")
-    public java.util.Optional<Utilisateur> getUtilisateur(String login) {
-        return userService.findByLogin(login);
+    public java.util.Optional<Utilisateur> getUtilisateur(String login, String password) {
+        return userService.findByLoginAndPassword(login, password);
     }
+
+
     @GetMapping("/public/utilisateurs")
     public List<Utilisateur> getUser( 
         @RequestParam(name = "roles", required = false) String roles){
