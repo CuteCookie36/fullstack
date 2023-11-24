@@ -12,23 +12,23 @@ export class UtilisateurService {
   constructor(private http: HttpClient) { }
 
   getAllUser() : Observable<Utilisateur[]>{
-    return this.http.get<Utilisateur[]>("api/admin/utilisateurs/");
+    return this.http.get<Utilisateur[]>("api/private/utilisateurs/");
   }
 
   addUtilisateur(utilisateur:Utilisateur): Observable<any> {
     const headers = { 'content-type': 'application/json'}
     const body=JSON.stringify(utilisateur);
     console.log(body)
-    return this.http.post("api/admin/utilisateurs", body,{'headers':headers})
+    return this.http.post("api/private/utilisateurs", body,{'headers':headers})
   }
 
   deleteUser(id: Number): Observable<Utilisateur>{
-    return this.http.delete<Utilisateur>("/api/admin/utilisateur/delete/"+id)
+    return this.http.delete<Utilisateur>("/api/private/utilisateur/delete/"+id)
   }
 
   patchUser(user: Utilisateur): Observable<Utilisateur> {
     console.log("id du user: " + user.id);
-    return this.http.patch<Utilisateur>("/api/admin/utilisateur/patch/"+user.id, user)
+    return this.http.patch<Utilisateur>("/api/private/utilisateur/patch/"+user.id, user)
   }
 
 

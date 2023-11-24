@@ -56,5 +56,16 @@ public class VaccinCenterService {
 
     }
 
+    public VaccinationCenter findByName(String name){
+        return centerRepository.findByName(name);
+    }
+
+    public boolean validationVaccincenter(String adress, String city, String name){
+        VaccinationCenter vaccinC = centerRepository.findByName(name);
+        this.centerRepository.save(vaccinC);
+
+        return true;
+    }
+
 
 }
