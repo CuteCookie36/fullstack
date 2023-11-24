@@ -1,1 +1,1 @@
-GET http://localhost:8080/api/admin/utilisateurs/
+GET http://localhost:8080/api/private/utilisateurs/
