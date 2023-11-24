@@ -84,12 +84,12 @@ export class LoginService {
 
   getUtilisateurByLogin(username: string): Observable<Utilisateur> {
     //console.log("test123");
-    return this.httpClient.get<Utilisateur>('/api/public/utilisateur?login='  + username);
+    return this.httpClient.get<Utilisateur>('/api/private/utilisateur?login='  + username);
   }
 
   getAllUtilisateurs(): Observable<Utilisateur[]> {
     //console.log("test789");
-    return this.httpClient.get<Utilisateur[]>('/api/public/utilisateur/');
+    return this.httpClient.get<Utilisateur[]>('/api/private/utilisateur/');
   }
   getCurrentUsername(): string{
     //console.log("username de ce role1: " + this.username);
@@ -108,7 +108,7 @@ export class LoginService {
 
   getVaccinationCenterById(id: Number): Observable<VaccinationCenter>{
     console.log("l'id du vaccin center de lui est: " + this.VaccinCenterId)
-    return this.httpClient.get<VaccinationCenter>('/api/public/centers/idd?Id='  + id);
+    return this.httpClient.get<VaccinationCenter>('/api/private/centers/idd?Id='  + id);
   }
 
 }

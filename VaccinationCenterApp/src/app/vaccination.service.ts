@@ -34,23 +34,23 @@ export class VaccinationService {
   }
 
   getCenterbyUserLogin(login: String) : Observable<VaccinationCenter>{
-    return this.http.get<VaccinationCenter>("api/public/centers/utilisateur?login="+login);
+    return this.http.get<VaccinationCenter>("api/private/centers/utilisateur?login="+login);
   }
 
   addCenter(centre: VaccinationCenter): Observable<any> {
     const headers = { 'content-type': 'application/json'}
     const body=JSON.stringify(centre);
     console.log(body)
-    return this.http.post("api/public/centers/save", body,{'headers':headers})
+    return this.http.post("api/private/centers/save", body,{'headers':headers})
   }
 
   deleteCenter(id: Number): Observable<VaccinationCenter> {
-    return this.http.delete<VaccinationCenter>("/api/public/centers/delete/"+id)
+    return this.http.delete<VaccinationCenter>("/api/private/centers/delete/"+id)
   }
 
   patchCenter(centre: VaccinationCenter): Observable<VaccinationCenter> {
     console.log("id du centre: " + centre.id);
-    return this.http.patch<VaccinationCenter>("/api/public/centers/patch/"+centre.id, centre)
+    return this.http.patch<VaccinationCenter>("/api/private/centers/patch/"+centre.id, centre)
   }
 
 }

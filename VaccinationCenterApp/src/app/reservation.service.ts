@@ -11,7 +11,7 @@ export class ReservationService {
 
   constructor(private http: HttpClient) { }
   getAllReservation() : Observable<Reservation[]>{
-    return this.http.get<Reservation[]>("api/public/centers/reservation/");
+    return this.http.get<Reservation[]>("api/private/centers/reservation/");
   }
 
   addReservation(reservation:Reservation): Observable<any> {
@@ -22,17 +22,17 @@ export class ReservationService {
   }
 
   getAllReservationByLastName(lastName: String) : Observable<Reservation[]>{
-    return this.http.get<Reservation[]>("/api/public/centers/reservations?lastName=" + lastName);
+    return this.http.get<Reservation[]>("/api/private/centers/reservations?lastName=" + lastName);
   }
 
   getAllReservationByVaccinCenter(Id: number) : Observable<Reservation[]>{
-    return this.http.get<Reservation[]>("/api/public/centers/reservations/vaccincenter?Id=" + Id);
+    return this.http.get<Reservation[]>("/api/private/centers/reservations/vaccincenter?Id=" + Id);
   }
 
   updateValidReservation(reservationId: number, newValidValue: number){
     const headers = { 'content-type': 'application/json'}
     const body=JSON.stringify({reservationId, newValidValue})
     console.log("body = " + body)
-    return this.http.post("api/public/centers/reservation/update-valid", body,{'headers':headers,responseType: 'text' })
+    return this.http.post("api/private/centers/reservation/update-valid", body,{'headers':headers,responseType: 'text' })
   }
 }
