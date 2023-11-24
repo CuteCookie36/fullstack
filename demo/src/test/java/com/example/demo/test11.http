@@ -2,14 +2,14 @@
 # Content-Type: application/json
 
 # {
-#     "login" : "myrtille2",
-#     "password": "peach2", 
-#     "nom": "tacos5",  
-#     "prenom" : "natcho5",
-#     "email": "ho@coudal.comm",
-#     "roles": "med",
+#     "login" : "testt1",
+#     "password": "testt2", 
+#     "nom": "testt3",  
+#     "prenom" : "testt4",
+#     "email": "test@testt5.comm",
+#     "roles": "admin",
 #     "vaccinationCenter": {
-#         "id" : 1
+#         "id" : 6
 #     }
 
 # }

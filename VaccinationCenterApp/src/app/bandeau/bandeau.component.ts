@@ -20,6 +20,8 @@ export class BandeauComponent implements OnInit{
   adress: string = '';
   postalCode: string = '';
   city: string = '';
+  loggedUser?: Utilisateur;
+
   private VaccinCenter!: VaccinationCenter;
 
   constructor(private loginService: LoginService, private router: Router) {
@@ -53,6 +55,14 @@ export class BandeauComponent implements OnInit{
         alert("utilisateur undefined");
       }
     },)
+
+    // const token = this.loginService.getStoredToken();
+    // if (token && this.loginService.isTokenValid(token)) {
+    //   this.loggedUser = this.loginService.getUserInfo(token || '');
+    // }
+    // else this.loginService.logout();
+
+
   }
 
   logout() {

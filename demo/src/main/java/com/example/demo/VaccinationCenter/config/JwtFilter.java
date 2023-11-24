@@ -6,6 +6,7 @@ import org.slf4j.LoggerFactory;
 import org.springframework.security.authentication.AnonymousAuthenticationToken;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.context.SecurityContextHolder;
+import org.springframework.stereotype.Component;
 import org.springframework.web.filter.OncePerRequestFilter;
 
 import jakarta.servlet.FilterChain;
@@ -19,6 +20,7 @@ import com.auth0.jwt.algorithms.Algorithm;
 import com.auth0.jwt.exceptions.JWTVerificationException;
 import com.auth0.jwt.interfaces.DecodedJWT;
 
+@Component
 public class JwtFilter extends OncePerRequestFilter {
 
     private static final org.slf4j.Logger log = LoggerFactory.getLogger(SecurityConfig.class);
@@ -41,7 +43,7 @@ public class JwtFilter extends OncePerRequestFilter {
                     log.info("Verification du token {}", token);
                     JWTVerifier verifier = JWT.require(Algorithm.HMAC256(SECRET))
                             .withIssuer("Polytech")
-                            .build(); //Reusable verifier instance
+                            .build(); 
                     try {
                         DecodedJWT jwt = verifier.verify(token);
                         var user = jwt.getSubject();

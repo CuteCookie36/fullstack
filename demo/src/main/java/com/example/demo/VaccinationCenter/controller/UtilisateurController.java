@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.example.demo.VaccinationCenter.entity.AuthReponse;
 import com.example.demo.VaccinationCenter.entity.Utilisateur;
 import com.example.demo.VaccinationCenter.service.UtilisateurServ;
 
@@ -41,6 +42,12 @@ public class UtilisateurController {
     public ResponseEntity<Void> login() {
         return ResponseEntity.ok().build();
     }
+
+    @PostMapping("/public/auth")
+    public AuthReponse authentif(@RequestBody Utilisateur user) {
+        return this.userService.authenticate(user);
+    }
+
 
     @GetMapping("/public/utilisateur")
     public java.util.Optional<Utilisateur> getUtilisateur(String login) {

@@ -1,9 +1,10 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Router } from '@angular/router';
-import { Observable, Subject, map } from 'rxjs';
+import { BehaviorSubject, Observable, Subject, map } from 'rxjs';
 import { Utilisateur } from './utilisateur';
 import { VaccinationCenter } from './vaccination-center';
+import { AuthResponse } from './authResponse';
 
 @Injectable({
   providedIn: 'root'
@@ -11,7 +12,7 @@ import { VaccinationCenter } from './vaccination-center';
 export class LoginService {
 
   private isLoggedSubject: Subject<boolean> = new Subject();
-  
+  //private userSubject: BehaviorSubject<Utilisateur | null>;
   private password?: string;
   private username?: string;
   private role?: string;
@@ -19,7 +20,9 @@ export class LoginService {
   private VaccinCenterId?: Number;
   private VaccinCenter!: VaccinationCenter;
 
-  constructor(private httpClient: HttpClient, private router: Router) { }
+  constructor(private httpClient: HttpClient, private router: Router) {
+    //this.userSubject =  new BehaviorSubject(JSON.parse(localStorage.getItem('utilisateur')!));
+   }
 
   connect(username: string, password: string):Observable<Utilisateur> {
     let token = this.createToken(username, password);
@@ -29,8 +32,8 @@ export class LoginService {
         'Authorization': token
       }
     };
-    //console.log("username2 = " + username);
-    //console.log("password2 = " + password);
+    console.log("username2 = " + username);
+    console.log("password2 = " + password);
     // //console.log("token = " + token);
 
     return this.httpClient.get<Utilisateur>('/api/public/utilisateur?login=' + username)
@@ -41,7 +44,7 @@ export class LoginService {
       this.connectedUser = user;
       this.role = this.connectedUser.roles;
       this.VaccinCenterId = this.connectedUser.vaccinationCenter.id;
-      //console.log("connected user role: " + this.connectedUser.roles)
+      console.log("connected user role: " + this.connectedUser.roles)
       //console.log("id vaccinC: " + this.connectedUser.vaccinationCenter.id)
       //console.log("id VaccinC 2: " + this.VaccinCenterId)
       //console.log("le roles est: " + this.role);
@@ -50,6 +53,37 @@ export class LoginService {
     }))
 
   }
+
+  // connect(username: string, password: string){
+  //   return this.httpClient.post<AuthResponse>("/api/public/auth", { username, password })
+  //     .pipe(map((response) => {
+  //       localStorage.setItem('user_token', JSON.stringify(response.token));
+  //       const user: Utilisateur = this.getUserInfo(response.token);
+  //       //this.userSubject.next(user);
+  //       this.password = password;
+  //       this.username = username;
+  //       this.isLoggedSubject.next(true);
+  //       this.connectedUser = user;
+  //       this.role = this.connectedUser.roles;
+  //       this.VaccinCenterId = this.connectedUser.vaccinationCenter.id;
+  //       return user;
+  //     }));
+  // }
+
+  getUserInfo(token: string): Utilisateur {
+    const parsedToken = (JSON.parse(atob(token.split('.')[1])))
+    return {
+      id: parsedToken.id,
+      login: parsedToken.login,
+      password: parsedToken.password,
+      email: parsedToken.email,
+      prenom: parsedToken.prenom,
+      nom: parsedToken.nom,
+      roles: parsedToken.roles,
+      vaccinationCenter: parsedToken.vaccinationCenter || null,
+    };
+  }
+
 //return this.http.get<VaccinationCenter[]>("api/public/centers?city="+city);
   private createToken(username?: string, password?: string) {
     // console.log("username3 = " + username);
@@ -78,7 +112,18 @@ export class LoginService {
       this.username = undefined;
     }
     this.isLoggedSubject.next(false);
+    localStorage.removeItem('user_token');
     this.router.navigateByUrl("/centers").then(console.log).catch(console.error)
+  }
+
+  getStoredToken (){
+    const token = localStorage.getItem('user_token');
+    return token?.slice(1, token.length-1)
+  }
+
+  isTokenValid(token: string) {
+    const expiry = (JSON.parse(atob(token.split('.')[1]))).exp;
+    return expiry * 1000 > Date.now();
   }
 
   getUtilisateurByLogin(username: string): Observable<Utilisateur> {
