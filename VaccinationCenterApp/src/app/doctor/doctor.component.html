@@ -12,10 +12,11 @@
 
 
 <br><br>
-        <button class = "allreserv" (click)="getAllReservation()"><strong>Voir toutes les réservations</strong></button>
-
+        <button class = "allreserv" (click)="getAllReservationByValidation()"><strong>Voir les réservations non validées</strong></button><br>
+        <button class = "allreserv" (click)="getAllReservationByValidationDone()"><strong>Voir les réservations validées</strong></button>
 <div class = "find_center">
     <h2>&nbsp;<strong>Trouver un patient </strong></h2><p>(veuillez respecter la casse (majuscule, toute lettre))</p>
+    <h3>&nbsp;Vous dever sélectionner une réservation pour la valider</h3>
     <div class = "recherche">
         &nbsp;&nbsp;<input type="text" [(ngModel)]="lastName" placeholder="Rechercher par nom" name = "search" class = "search_bar">
         <button class = "search_cent" (click)="searchByName()"><strong>Rechercher</strong></button>
@@ -27,7 +28,10 @@
             <strong>Nom:</strong> {{ reservation.lastName }}<br>
             <strong>Adresse mail:</strong> {{ reservation.mail }}<br>
             <strong>Date:</strong> {{ reservation.dateRDV }}<br>
-            <button class = "select_center" (click)="selectReservation(reservation)"><Strong>Sélectionner</Strong></button><br>
+            <div *ngIf="!valeur2">
+                <button class = "select_center" (click)="selectReservation(reservation)"><Strong>Sélectionner</Strong></button>
+                <br>
+            </div>
           <hr>  
         </li>
     </ul>  
@@ -40,8 +44,9 @@
 
 </div>
 <br>
-<button class = "bt_valid" (click)="updateValidation(selected!.id, 1)"><strong>Valider</strong></button>
-
+<div *ngIf="!valeur2">
+    <button class = "bt_valid" (click)="updateValidation(selected!.id, 1)"><strong>Valider</strong></button>
+</div>
 <!------------------------------------------------------------------------------------------------------------------------>
 <div class = "find_center">
     

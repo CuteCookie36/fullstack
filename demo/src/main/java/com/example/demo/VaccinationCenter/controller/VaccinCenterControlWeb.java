@@ -70,6 +70,12 @@ public class VaccinCenterControlWeb {
         return reservService.findAll();
     }
 
+    @GetMapping(path = "/private/centers/reservation/validoui/{Valid}")
+    public List<Reservation> getReservationbyValidation(@PathVariable("Valid")int Valid){
+        return reservService.findAllByValideReservations(Valid);
+    }
+
+
     @GetMapping(path = "/private/centers/reservations")
     public List<Reservation> getbyName(  
         @RequestParam(name = "lastName", required = false) String lastName){

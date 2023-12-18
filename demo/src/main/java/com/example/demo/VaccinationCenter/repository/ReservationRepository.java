@@ -12,4 +12,5 @@ public interface ReservationRepository extends JpaRepository<Reservation, Intege
     
     public List<Reservation> findAllByLastNameLike(String lastName);
     public List<Reservation> findAllByVaccinationCenterId(Number Id);
+    public List<Reservation> findAllByValid(int Valid);
 }

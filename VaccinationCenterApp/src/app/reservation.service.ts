@@ -14,6 +14,10 @@ export class ReservationService {
     return this.http.get<Reservation[]>("api/private/centers/reservation/");
   }
 
+  getAllReservationValid(Valid: number) : Observable<Reservation[]>{
+    return this.http.get<Reservation[]>("api/private/centers/reservation/validoui/" + Valid);
+  }
+    
   addReservation(reservation:Reservation): Observable<any> {
     const headers = { 'content-type': 'application/json'}
     const body=JSON.stringify(reservation)
