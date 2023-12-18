@@ -35,6 +35,10 @@ public class ReservationService {
         return reservRepository.findById(ID);
     }
 
+    public List<Reservation> findAllByValideReservations(int Valid){
+        return reservRepository.findAllByValid(Valid);
+    }
+
     public void updateValidForReservation(int reservationId, int newValidValue) {
         Optional<Reservation> optionalReservation = reservRepository.findById(reservationId);
 

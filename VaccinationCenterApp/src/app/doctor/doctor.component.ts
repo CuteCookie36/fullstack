@@ -21,6 +21,7 @@ export class DoctorComponent {
   selected?: Reservation;
   selectedReservId: number | null = null;
   valeur: boolean = false;
+  valeur2: boolean = false;
   username: string = "";
   utilisateur!: Utilisateur;
   centers!: VaccinationCenter[];
@@ -37,6 +38,20 @@ export class DoctorComponent {
 
   getAllReservation() {
     this.service.getAllReservation().subscribe(data => {
+      this.reservations = data;
+    });
+  }
+
+  getAllReservationByValidation(){
+    this.valeur2 = false;
+    this.service.getAllReservationValid(0).subscribe(data => {
+      this.reservations = data;
+    });
+  }
+
+  getAllReservationByValidationDone(){
+    this.valeur2 = true;
+    this.service.getAllReservationValid(1).subscribe(data => {
       this.reservations = data;
     });
   }
